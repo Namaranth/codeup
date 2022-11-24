@@ -1,0 +1,68 @@
+{% extends 'code.html' %}
+
+{% block content %}
+    <div>
+        <div class="community">
+            COMMUNITY
+        </div>
+        <form class="community-search" action="/community/search/">
+            <input id="community-searchBar" type="text" name="word" placeholder="검색어를 입력하세요.">
+            <input id="community-searchBtn" type="submit" class="search-button" value="검색">
+        </form>
+
+        <div class="community-select">
+            <a href="/community" class="community-all">전체글</a>
+            <a href="/bestcommunity" style="margin-left:20px;"><span class="material-symbols-outlined">local_fire_department</span>추천글</a>
+        </div>
+        <table class="community-table">
+            <colgroup>
+                <col style="width: 7%">
+                <col>
+                <col style="width: 7%">
+                <col style="width: 7%">
+                <col style="width: 7%">
+                <col style="width: 15%">
+            </colgroup>
+            <thead class="community-thead">
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>댓글수</th>
+                    <th>추천수</th>
+                    <th>글쓴이</th>
+                    <th>작성일</th>
+                </tr>
+            </thead>
+            <tbody class="community-tbody">
+
+                {% for twit in twits %}
+                <tr>               
+                    <td id="community-twit-id">{{twit.id}}</td>
+                    <td id="community-twit-title"><a href="/community/{{twit.id}}">{{twit.title}}</a></td>
+                    <td id="community-twit-id">{{twit.commentCount}} </td>
+                    <td id="community-twit-id">{{twit.Recommend}} </td>
+                    <td id="community-twit-nick">{{twit.User.nick}}</td>
+                    <td id="community-twit-createdAt">{{twit.created}}</td> 
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            {% if user and user.id %}
+            <button id="community-write-button"><a href="/write" style="color:black">글쓰기</a></button>
+            {% endif %}
+        </div>
+        <div class="community-page-class-wrap">
+            {% for i in maxPage %}        
+                <a href="/community?page={{i}}" id="community-page">{{i}}</a>
+            {% endfor %}
+        </div>
+        
+    </div>
+
+{% endblock %}
+
+
+
+
+

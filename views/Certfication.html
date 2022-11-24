@@ -1,0 +1,22 @@
+{% extends 'Main.html' %}
+{% block content %}
+<body>
+<div class="certification-title"><h1>인증번호 확인</h1></div>
+<div class="join-title2">입력하신 메일로 인증번호를 보내드렸습니다.</div>
+<form id="join-form" action="/certification" method="post">
+    <div class="input-group">
+        <div id="certification-input">
+            <label for="certification-index">인증번호 </label>
+            <input id="certification-inputcode"  name="certfication" placeholder="인증번호를 입력해주세요.">
+            <input id="joinCode" type="hidden" value="{{code}}" name="code">
+            <input id="joinCode" type="hidden" value="{{mail}}" name="mail">
+            <button id="certification-btn" type="submit"> 전송 </button>
+        </div>
+        <div id = "certification-error">{{error}}</div>
+    </div>
+</form>
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

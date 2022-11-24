@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="/style/mypage.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+        <title>
+            {{title}}
+        </title>
+    </head>
+
+    <body>
+        <div class="Logo">
+            <a href="/"><img src="/image/Logo3.png"></a>
+        </div>
+        <div class="index">
+            <div>
+                <a href="/"><span>HOME</span></a>
+                <a href="/community"><span>COMMUNITY</span></a>
+                <span>CHAT</span>
+                <a href="/code/CompileC"><span>CODE</span></a>
+                <a href="/mypage"><span>MYPAGE</span></a>
+            </div>
+        </div>
+
+        
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,69 @@
+{% extends 'code.html' %}
+
+{% block content %}
+<div class="content-title">
+    COMMUNITY
+</div>
+<div class="content-body">
+    <div id="content-title">{{read.title}}</div>
+
+
+    <div class="content-body-info">
+        <span id="content-nick">{{read.User.nick}}</span>
+        <span id="content-createdAt">작성일 : {{read.created}}</span>
+        {% if user.id == read.UserId %}
+        <div class="edit-delete">
+            <form id="content-delete" action="/community/delete/{{read.id}}" method="post" enctype="multipart/form-data">
+                <button id="content-delete-btn" type="submit">삭제</button>
+            </form>
+            <form id="content-edit" action="/community/edit/{{read.id}}" method="post" enctype="multipart/form-data">
+                <button id="content-edit-btn" type="submit">수정</button>
+            </form>
+        </div>
+    {% endif %}
+    </div>
+    
+    <pre id="content-content">
+        <div id="content-content-content">{{read.content}}</div>
+    </pre>
+</div>
+
+
+{% if user.id == good.UserId %}
+<form id="recommend" class="recommend" action="/post/derecommend/{{read.id}}" method="post" enctype="multipart/form-data">
+    <button id="derecommend-btn" type="submit">비추천<br>{{read.Recommend}}</button>
+</form>
+{% else %}
+<form id="recommend" class="recommend" action="/post/recommend/{{read.id}}" method="post" enctype="multipart/form-data">
+    <button id="recommend-btn" type="submit">추천<br>{{read.Recommend}}</button>
+</form>
+{% endif %}
+
+<div>
+    <div>
+        <form id="datgle-form" class="datgle-form" action="/post/comment/{{read.id}}" method="post" enctype="multipart/form-data">
+          <div id="datgle-title"><strong>댓글</strong></div>
+            <textarea id="datgle" name="review" maxlength="500"></textarea>
+            <button id="datgle-btn" type="submit">입력</button>
+          </div>
+        </form>
+      </div >
+      
+    {% for twit in twits %}
+    <div class="community-review">
+        <div id="community-review-nick"><strong>{{twit.User.nick}}</strong>&nbsp;&nbsp;&nbsp;{{twit.created}}</div>
+        <p id="community-review-review">{{twit.review}}</p>
+        {% if user.id == twit.UserId %}
+        <a class="reload" href="/post/community/comment/delete/{{twit.id}}">삭제</a>
+        <a class="edit" href="/post/community/comment/edit/{{twit.id}}">수정</a>
+        {% endif %}
+        
+    </div>
+    
+    {% endfor %}
+       
+</div>
+{% endblock %}
+
+
+

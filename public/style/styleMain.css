@@ -1,0 +1,318 @@
+* {
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    color: #fff;
+}
+
+body{
+    margin: 0px;
+    background-color: #1a1a1a;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+/* head */
+.head {
+    display: inline-block;
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 40px;
+    width: 100%;
+    background-color: #262626;
+}
+
+.head .material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.head div{
+    display: inline-block;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    width: 120px;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 1900px;
+}
+
+
+/* title */
+.title {
+    display: inline-block;
+    font-family: 'Noto Sans KR', sans-serif;
+    width: 400px;
+    margin-top: 200px;
+    margin-left: 830px;
+}
+
+
+/* body */
+.body {
+    width: 1200px;
+    height: 30px;
+    border-radius: 5px;
+    margin: 50px 440px 0;
+}
+
+.body div {
+    text-align: center;
+}
+
+.body div span {
+    cursor: pointer;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.body div span:hover {
+    padding: 7px 0;
+    border-bottom: 3px solid white;
+}
+
+/* register - Signup.html */
+.signup-table {
+    display: inline-block;
+    width: 900px;
+    height: 230px;
+    margin: 20px 580px 0;
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+}
+
+.join-title h1{
+    width: 500px;
+    font-family: 'Noto Sans KR', sans-serif;
+    border-top: 3px solid white;
+    width:900px;
+    margin-left: 580px;
+}
+.join-title2 {
+    font-family: 'Noto Sans KR', sans-serif;
+    width:900px;
+    margin-left: 580px;
+}
+.input-group {
+    font-family: 'Noto Sans KR', sans-serif;
+    display: inline-block;
+    margin: 20px 580px 10px;
+    font-size: 24px;
+}
+#join-text {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 40px;
+    width: 300px;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+    border-color: gray;
+    background-color: #262626;
+}
+
+#join-error {
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align: center;
+    width: 310px;
+    font-size: 14px;
+}
+
+#join-btn {
+    display: inline-block;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    width: 310px;
+    height: 43px;
+    font-size: 22px;
+    margin: 5px 0 0;
+    color: black;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#join-btn:hover {
+    background-color: aliceblue;
+}
+
+
+
+#join-null {
+    font-family: 'Noto Sans KR', sans-serif;
+    display: inline-block;
+    width: 300px;
+    height: 30px;
+    text-align: center;
+    margin-left: 900px;
+}
+
+
+/* 추가 */
+.join-whole {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 24px;
+    display: inline-block;
+    width: 350px;
+    height: 420px;
+    margin: 0 895px 0;
+}
+
+#join-label {
+    margin-bottom: 10px;
+}
+.signup-join-btn {
+    display: inline-block;
+    width: 360px;
+    height: 70px;
+    margin-left: 895px;
+    margin-top: 20px;
+}
+
+#signup-passwordalert {
+    width: 310px;
+    text-align: center;
+}
+
+
+/* mail.html */
+.mail-title h1{
+    font-family: 'Noto Sans KR', sans-serif;
+    border-top: 3px solid white;
+    width:900px;
+    margin-left: 580px;
+}
+
+#mail-index {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#mail-input {
+    width: 400px;
+}
+
+#mail-inputmail {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 30px;
+    width: 180px;
+    color: black;
+}
+
+#mail-btn {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 33px;
+    width: 80px;
+    font-size: 16px;
+    border-radius: 4px;
+    border-color: white;
+    background-color: #262626;
+}
+
+
+/* certification.html */
+.certification-title h1{
+    width: 500px;
+    font-family: 'Noto Sans KR', sans-serif;
+    border-top: 3px solid white;
+    width:900px;
+    margin-left: 580px;
+}
+
+#certification-index {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#certification-input {
+    width: 400px;
+}
+#certification-inputcode {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 30px;
+    width: 180px;
+    color: black;
+}
+
+#certification-btn {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 33px;
+    width: 80px;
+    font-size: 16px;
+    border-radius: 4px;
+    border-color: white;
+    background-color: #262626;
+}
+
+#certification-error {
+    display: inline-block;
+    width: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    margin: 0 95px 0;
+    color: white;
+}
+
+
+
+/* PasswordEdit.html */
+
+#passwordedit-password {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 40px;
+    width: 300px;
+    font-size: 24px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-color: gray;
+    background-color: #262626;
+}
+
+#passwordedit-repassword {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 40px;
+    width: 300px;
+    font-size: 24px;
+    margin-top: 10px;
+    border-color: gray;
+    background-color: #262626;
+}
+
+.passwordedit-btn {
+    display: inline-block;
+    margin-top: 20px;
+    width: 160px;
+    height: 40px;
+}
+
+#passwordedit-btn {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: black;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 4px;
+    height: 35px;
+    width: 120px;
+}
+#passwordedit-btn:hover {
+    background-color: aliceblue;
+}
+
+#passwordedit-passwordalert {
+    width: 240px;
+    font-size: 14px;
+}
+
+#passwordedit-null {
+    display: inline-block;
+    width: 240px;
+    height: 20px;
+    font-size: 14px;
+}
+
+#passwordedit-check {
+    display: inline-block;
+    width: 240px;
+    height: 20px;
+    font-size: 14px;
+}

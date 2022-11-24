@@ -1,0 +1,48 @@
+        {% extends 'Main.html' %}
+        {% block content %}
+    <body>
+        <div class="join-title"><h1></h1></div>
+
+        <form id="join-form" action="/auth/join" method="post">
+            <div class = "join-whole">
+                <div id="join-label" ><label for="join-email">이메일&emsp;</label></div>
+                <div><input id="join-text" type="email" name="email" readonly value="{{userMail}}"></div>
+                
+                <div id="join-label"><label for="join-nick">닉네임&emsp;</label></div>
+                <div><input id="join-text" type="text" name="nick" maxlength="10"></div>
+                <div id="join-error">{{error}}</div>
+            
+                <div id="join-label"><label for="join-password">비밀번호&emsp;</label></div>
+                <div><input id="join-text" type="password" name="password"></input></div>
+            
+                <div id="join-label"><label for="join-password">비밀번호확인&emsp;</label></div>
+                <div><input id="join-text" type="password" name="checkpassword"></input></div>
+                <div id="join-error">{{check}}</div >
+            </div>
+            <div class="signup-join-btn">
+                <div id="signup-passwordalert">비밀번호는 8자리 이상 입력해주세요.</div>
+                <button id="join-btn" type="submit" class="btn">회원가입</button>
+            </div>
+            <div id = "join-null">
+                {{Null}}
+            </div>
+        </form>
+
+    </body>
+    
+        {% endblock %}
+
+        {% block script %}
+        <script>
+                window.onload = () => {
+                    if (new URL(location.href).searchParams.get('error')) {
+                        alert('이미 존재하는 이메일입니다.');
+                    }
+                };
+                window.onload = () => {
+                    if (new URL(location.href).searchParams.get('error')) {
+                        alert('이미 존재하는 닉네임입니다.');
+                    }
+                };
+        </script>
+        {% endblock %}

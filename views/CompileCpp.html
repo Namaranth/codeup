@@ -1,0 +1,89 @@
+{% extends 'code.html' %}
+
+{% block content %}
+
+        
+<div class = "menu">
+    <div class="left-side">
+        {% if user and user.id %}
+        {% for twit in twits %}
+        {% if twit.UserId == user.id %}
+        <div id="codeindex"><a href="/code/Cpp/{{twit.id}}">{{twit.codetitle}}</a></div>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        <div>로그인시 저장 기능을 이용할 수 있습니다.</div>
+        {% endif %}
+    </div>
+    <div class="center">
+        <div class="Tag2">
+            <a href="/code/CompileC"><button id="TagC2">C</button></a>
+        </div>
+        <div class="Tag2">
+            <button id="TagCpp2">C++</button>
+        </div>
+            <form id="Save-Form" action="/code/Cpp" method="post" enctype="multipart/form-data">
+                {% if user and user.id %}
+                <div class="code-upload">
+                    <textarea id="codetitle" name="codetitle" placeholder="제목을 입력하세요."></textarea>
+                </div>
+                <button id="code-btn" type="submit">저장</button>  
+                {% endif %}
+                <div class = "Box">
+                    <div class="CodeBox">
+                        <h1 id = "titleCode">Code</h1>
+                        <textarea id="code" name="code" is="highlighted-code">{{read.code}}</textarea>
+                    </div>
+            </form>
+                    <div class ="ConsoleBox">
+                        <h1 id = "titleConsole">Console</h1>
+                        <textarea id="output" type="text" name="output"></textarea>
+                    </div>
+                </div>
+        </div>
+</div>
+<div class="compile-bottom">
+<button class="ajaxsend" id="ajax_post">실행</button>
+<a href="/write"><button class="codewrite" id="codewrite">업로드</button></a>
+</div>
+{% endblock %}   
+        
+{% block script %}
+        <!-- Script -->
+        <script>
+            // syntax highlighter
+            (async ({chrome}) => {
+                  const {default: HighlightedCode} =
+                    await import('https://unpkg.com/highlighted-code');
+                  HighlightedCode.useTheme('nord');
+              })(self);
+
+            // Ajax Post
+           document.querySelector('.ajaxsend').addEventListener('click', function(){
+            sendAjax('/code/code_receiveCpp', code.value);
+           })
+           function sendAjax(url, data) {
+            var data = {'code' : data};
+            data = JSON.stringify(data);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.send(data);
+
+            xhr.addEventListener('load', function() {
+                var result = JSON.parse(xhr.responseText);
+                if(result.result != 'ok') return;
+                document.getElementById('output').value = result.output;
+            });
+           }
+
+            // Ajax Post -> 게시판
+            $(function() {
+            $('#codewrite').click(function(){
+                var text = document.getElementById("code");
+                localStorage.setItem("code", text.value);
+            })
+           })
+        </script>
+{% endblock %}
+

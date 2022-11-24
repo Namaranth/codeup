@@ -1,0 +1,20 @@
+{% extends 'Mypage.html' %}
+
+{% block content %}
+<div class="info">
+    <div id="info-title">MYPAGE</div>
+
+    <div class="info-user">
+        <div class="info-users">
+            <div id="info-user-nick">닉네임</div>
+            <div id="info-user-inputnick"><input type="text" readonly value="{{user.nick}}"></div>
+        </div>
+        <div class="info-emails">
+            <div id="info-user-email">이메일</div>
+            <div id="info-user-inputnick"><input type="email" readonly value="{{user.email}}"></div>
+        </div>
+    </div>
+    <div id="info-user-content"><a href="/mypage/community/{{user.id}}">내가 쓴 글</a></div>
+    
+</div>
+{% endblock %}

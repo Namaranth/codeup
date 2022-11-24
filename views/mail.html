@@ -1,0 +1,25 @@
+{% extends 'Main.html' %}
+{% block content %}
+<body>
+<div class="mail-title"><h1>이메일 인증</h1></div>
+<form id="join-form" action="/mail" method="post">
+    <div class="input-group">
+        <div id="mail-input">
+            <label for="mail-inputmail" id="mail-index">이메일</label>
+            <input id="mail-inputmail" type="email" name="email" placeholder="이메일을 입력해주세요.">
+            <button id="mail-btn" type="submit"> 전송 </button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
+
+{% block script %}
+<script>
+        window.onload = () => {
+            if (new URL(location.href).searchParams.get('error')) {
+                alert('이미 존재하는 이메일입니다.');
+            }
+        };
+</script>
+{% endblock %}

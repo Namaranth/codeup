@@ -1,0 +1,50 @@
+* {
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    color: #fff;
+}
+
+body{
+    margin: 0px;
+    background-color: #1a1a1a;
+}
+
+
+/* Head */
+.head {
+    position: relative;
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    background-color: #262626;
+}
+
+.head span {
+    margin: 0px 100px 100px;
+}
+
+.head span:hover {
+    padding: 7px 0;
+    border-bottom: 3px solid white;
+}
+
+/* Logo */
+.Logo {
+    font-family: 'Noto Sans KR', sans-serif;
+    width: 100%;
+    margin-top: 120px;
+    text-align: center;
+}
+
+/* Register */
+.Register #bar {
+    font-family: 'Noto Sans KR', sans-serif;
+    position: relative;
+    width:1000px;
+    margin: 20px 570px 0;
+    font-size: 30px;
+    text-align: center;
+    border-top: 5px solid white;
+}
