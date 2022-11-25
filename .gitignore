@@ -4,3 +4,5 @@ uploads
 coverage
 .env
 a.exe
+main.c
+main.cpp
