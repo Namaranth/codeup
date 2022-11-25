@@ -55,7 +55,6 @@
         <p id="community-review-review">{{twit.review}}</p>
         {% if user.id == twit.UserId %}
         <a class="reload" href="/post/community/comment/delete/{{twit.id}}">삭제</a>
-        <a class="edit" href="/post/community/comment/edit/{{twit.id}}">수정</a>
         {% endif %}
         
     </div>

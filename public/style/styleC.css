@@ -351,7 +351,7 @@ margin: 15px;
 }
 .community-review {
     display: inline-block;
-    margin-left: 400px;
+    margin-left: 350px;
     width: 1400px;
     border-bottom: 1px solid gray;
 }
@@ -407,14 +407,14 @@ margin: 15px;
     font-family: 'Noto Sans KR',sans-serif;
     font-size: 24px;
     margin: 20px 0 0;
-    margin-left: 400px;
+    margin-left: 350px;
     padding-bottom: 7px;
     border-bottom: 3px solid white;
 }
 
 .content-body {
     font-family: 'Noto Sans KR',sans-serif;
-    margin-left: 400px;
+    margin-left: 350px;
 }
 
 .edit-delete{
@@ -522,7 +522,7 @@ margin: 15px;
     width:1405px;
     height: 110px;
     margin-top: 20px;
-    margin-left: 400px;
+    margin-left: 350px;
     padding-bottom: 20px;
     border-bottom: 3px solid white;
 }
@@ -547,7 +547,7 @@ margin: 15px;
     font-family: 'Noto Sans KR',sans-serif;
     font-size: 24px;
     width: 1400px;
-    margin-left: 400px;
+    margin-left: 350px;
     margin-bottom: 50px;
 }
 #datgle-twit-review{
