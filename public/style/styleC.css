@@ -13,7 +13,9 @@ body{
 /* Header */
 .header {
     display: inline-block;
-    margin-left: 920px;
+    width: 280px;
+    height: 180px;
+    margin-left: 850px;
 }
 #Logo {
     width: 280px;
@@ -25,13 +27,16 @@ body{
 .Top_menu {
     font-family: 'Noto Sans KR',sans-serif;
     background-color: #262626;
-    width: 2130px;
     height: 40px;
     margin: 30px 0 0;
 }
-.Top_menu div {
-    margin-left: 30.5%;
+#Top_menu {
+    display: inline-block;
+    height: 40px;
+    width: 820px;
+    margin-left: 580px;
 }
+
 .Top_menu span {
     margin-left: 50px;
     margin-right: 50px;
@@ -137,8 +142,24 @@ body{
     font-family: 'Noto Sans KR',sans-serif;
     background-color: #262626;
     margin: 30px 10px 0;
-    width: 500px;
-    height: 700px;
+    width: 450px;
+    height: 600px;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: gray;
+    box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
+    border-radius: 100px;
 }
 
 

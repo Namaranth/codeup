@@ -38,7 +38,7 @@ ol, ul, li {
     width: 120px;
     height: 40px;
     margin-top: 5px;
-    margin-left: 1900px;
+    margin-left: 1600px;
 }
 
 
@@ -48,23 +48,22 @@ ol, ul, li {
     font-family: 'Noto Sans KR', sans-serif;
     width: 400px;
     margin-top: 200px;
-    margin-left: 830px;
+    margin-left: 750px;
 }
 
 
 /* body */
 .body {
-    width: 1200px;
-    height: 30px;
+    display: inline-block;
+    width: 820px;
+    height: 40px;
     border-radius: 5px;
-    margin: 50px 440px 0;
+    margin-top: 20px;
+    margin-left: 550px;
 }
 
-.body div {
-    text-align: center;
-}
 
-.body div span {
+.body span {
     cursor: pointer;
     margin-left: 50px;
     margin-right: 50px;
