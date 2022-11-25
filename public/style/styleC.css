@@ -297,7 +297,8 @@ body{
     width: 140px;
     height: 40px;
     font-size: 24px;
-    margin: 20px 990px 0;
+    margin: 20px 0 0;
+    margin-left: 925px;
 }
 .community-select{
     width: 1200px;
@@ -306,7 +307,8 @@ body{
 }
 
 .community-search {
-    margin: 0 500px 20px;
+    margin: 0 0 20px;
+    margin-left: 400px;
 }
 #community-searchBar {
     font-family: 'Noto Sans KR',sans-serif;
@@ -340,7 +342,8 @@ margin: 15px;
     font-family: 'Noto Sans KR',sans-serif;
     font-size: 18px;
     width: 1200px;
-    margin: 10px 500px 0;
+    margin: 10px 0 0;
+    margin-left: 400px;
 }
 
 #community-twit-id {
@@ -381,7 +384,7 @@ margin: 15px;
     width: 80px;
     border-radius: 3px;
     margin-top: 40px;
-    margin-left: 1630px;
+    margin-left: 1520px;
 }
 
 .community-page-class-wrap {
