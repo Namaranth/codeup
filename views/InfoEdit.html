@@ -1,0 +1,23 @@
+{% extends 'Mypage.html' %}
+
+{% block content %}
+<div class="info">
+    <div id="info-title">내정보 변경</div>
+
+    <form id="join-form" action="/info/update" method="post">
+    <div class="input-group">
+        <div id="info-edit-input">
+            <div id="info-edit-label"><label for="edit-nick">닉네임&emsp;</label></div>
+            <input id="info-edit-nick" name="nick" value="{{nickname}}">
+            <div id="info-edit-label"><label for="edit-password">비밀번호&emsp;</label></div>
+            <input id="info-password-inputcode" type="password" name="password">
+            <div id="info-edit-label"><label for="edit-passwordcheck">비밀번호확인&emsp;</label></div>
+            <input id="info-password-inputcode" type="password" name="passwordcheck">
+        </div>
+        <button id="info-edit-btn" type="submit"> 변경 </button>
+        <div id = "Infoediterror">{{error}}</div>
+    </div>
+</form>
+    
+</div>
+{% endblock %}

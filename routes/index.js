@@ -233,6 +233,96 @@ router.get('/mypage', isLoggedIn, async (req, res) => {
     
 })
 
+//내정보 비밀번호 확인
+router.get('/info/password',isLoggedIn, (req, res) => {
+  res.render('InfoPassword', {title: '비밀번호 확인'});
+});
+
+//내정보 변경
+router.post('/info/edit',isLoggedIn,async(req,res)=>{
+  const InputPw = req.body.code;
+  const pass = req.user.password;
+  const user_nick =req.user.nick;
+  console.log(user_nick);
+  var compare = await bcrypt.compare( InputPw, pass );
+  if(compare){
+    res.render('InfoEdit', {
+      title: '내정보 변경',
+      nickname:user_nick,
+  })
+}
+});
+
+//변경된 내정보 업데이트
+router.post('/info/update',isLoggedIn,async(req,res)=>{
+  const id =req.user.id;
+  const inputNick = req.body.nick;
+  const user_nick = req.user.nick;
+  const password = req.body.password;
+  const passwordCheck = req.body.passwordcheck;
+  const Error = "중복된 닉네임입니다.";
+  const Check = "비밀번호가 틀립니다.";
+  const PWlength="비밀번호는 8글자 이상입니다.";
+  const Null="수정할 데이터가 없습니다.";
+  const exNick = await User.findOne({
+    where: { nick:inputNick }
+  })
+
+  if(inputNick == user_nick || inputNick == null){ // 닉네임 수정이 필요하지않다.
+    console.log(inputNick);
+    if(password == "" && passwordCheck == ""){//비밀번호 수정이 필요없다.
+      res.render("InfoEdit", {
+        nickname: user_nick,
+        error: Null,
+      });
+    }else if(password!=passwordCheck){//비밀번호가 다르다
+      res.render("InfoEdit", {
+        nickname: user_nick,
+        error: Check,
+      });
+    }else if(password.length<8){//비밀번호가 짧다
+      res.render("InfoEdit", {
+        nickname: user_nick,
+        error: PWlength,
+      });
+    }else{
+      const hash = await bcrypt.hash(password, 12);
+      const passwordEdit = await User.update({// 비밀번호변경
+        password:hash
+      },{where:{id}})
+      res.redirect('/mypage')
+    }
+  }else{// 닉네임 수정이 필요하다
+    if(exNick) { // 이미존재하는 닉네임
+    res.render("InfoEdit", {
+      nickname: user_nick,
+      error: Error
+    });
+}else if(password == "" && passwordCheck == ""){//비밀번호 변경할 필요가없다
+    const nickEdit = await User.update({//닉네임변경
+      nick: inputNick
+    },{where:{id}})
+    res.redirect('/mypage')
+  }else if(password != passwordCheck){//비밀번호가 다르다
+    res.render("InfoEdit", {
+      nickname: inputNick,
+      error: Check,
+    });
+  }else if(password.length < 8){// 비밀번호가 너무짧다
+    res.render("InfoEdit", {
+      nickname: inputNick,
+      error: PWlength,
+    });
+  }else{
+    const hash = await bcrypt.hash(password, 12);
+    const infoEdit = await User.update({//닉네임과 비밀번호 업데이트
+      nick: inputNick,
+      password: hash
+    },{where:{ id }})
+    res.redirect('/mypage')
+  }} 
+});
+
 router.get('/mypage/community/:idx', isLoggedIn, async (req, res) => {
 
   try {      
