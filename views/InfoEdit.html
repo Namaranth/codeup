@@ -6,13 +6,13 @@
 
     <form id="join-form" action="/info/update" method="post">
     <div class="input-group">
-        <div id="info-edit-input">
+        <div class="info-edit-input">
             <div id="info-edit-label"><label for="edit-nick">닉네임&emsp;</label></div>
-            <input id="info-edit-nick" name="nick" value="{{nickname}}">
+            <input id="info-input" name="nick"value="{{nickname}}">
             <div id="info-edit-label"><label for="edit-password">비밀번호&emsp;</label></div>
-            <input id="info-password-inputcode" type="password" name="password">
+            <input id="info-input" type="password" name="password">
             <div id="info-edit-label"><label for="edit-passwordcheck">비밀번호확인&emsp;</label></div>
-            <input id="info-password-inputcode" type="password" name="passwordcheck">
+            <input id="info-input" type="password" name="passwordcheck">
         </div>
         <button id="info-edit-btn" type="submit"> 변경 </button>
         <div id = "Infoediterror">{{error}}</div>

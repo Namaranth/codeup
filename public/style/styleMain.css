@@ -66,6 +66,40 @@ ol, ul, li {
     margin-left: 750px;
 }
 
+#dynamic {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 30px;
+    position: absolute;
+    width: 400px;
+    height: 50px;
+    margin-top: 100px;
+    margin-left: 450px;
+    transform: rotate(-25deg);
+    background: linear-gradient(to right, #fff, #8ca6ce);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#dynamic::after {
+    content: "|";
+    animation: blink 1s step-end infinite;
+    color: #fff;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    49% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 
 /* body */
 .body {
@@ -84,10 +118,12 @@ ol, ul, li {
     margin-right: 50px;
 }
 
-.body div span:hover {
+.body span:hover {
     padding: 7px 0;
     border-bottom: 3px solid white;
 }
+
+
 
 /* register - Signup.html */
 .signup-table {
@@ -103,9 +139,10 @@ ol, ul, li {
     width: 500px;
     font-family: 'Noto Sans KR', sans-serif;
     border-top: 3px solid white;
-    width:900px;
+    width:770px;
     margin-left: 580px;
 }
+/* 부제목 입력하신 메일로 인증번호를 보내드렸습니다. */
 .join-title2 {
     font-family: 'Noto Sans KR', sans-serif;
     width:900px;
@@ -121,10 +158,11 @@ ol, ul, li {
     font-family: 'Noto Sans KR', sans-serif;
     height: 40px;
     width: 300px;
+    border-radius: 15px;
+    border: 0;
     text-align: center;
     font-size: 24px;
     margin-bottom: 10px;
-    border-color: gray;
     background-color: #262626;
 }
 
@@ -226,13 +264,6 @@ ol, ul, li {
 
 
 /* certification.html */
-.certification-title h1{
-    width: 500px;
-    font-family: 'Noto Sans KR', sans-serif;
-    border-top: 3px solid white;
-    width:900px;
-    margin-left: 580px;
-}
 
 #certification-index {
     font-family: 'Noto Sans KR', sans-serif;
@@ -330,3 +361,5 @@ ol, ul, li {
     height: 20px;
     font-size: 14px;
 }
+
+

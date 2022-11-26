@@ -46,7 +46,8 @@ body{
     width: 1200px;
     height: 30px;
     border-radius: 5px;
-    margin: 50px 440px 0;
+    margin: 50px 0 0;
+    margin-left: 440px;
 }
 
 .index div {
@@ -124,7 +125,7 @@ body{
     font-size: 24px;
 }
 
-/*정보변경 과정*/
+/* infoEdit.html */
 #info-edit{
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 18px;
@@ -138,8 +139,12 @@ body{
     height: 35px;
 }
 
+#info-edit:hover {
+    background-color: #1b1b1b;
+}
 
 #info-password-inputcode{
+    font-family: 'Noto Sans KR', sans-serif;
     height: 25px;
     color: #000;
 }
@@ -152,10 +157,13 @@ body{
     border-radius: 1px;
     width: 80px;
     height: 30px;
-    margin-left: 10px;
+    margin-top: 10px;
 }
 
-/*정보변경 창*/
+#info-password-btn:hover {
+    background-color: #1b1b1b;
+}
+
 .input-group{
     font-size: 20px;
 }
@@ -166,12 +174,31 @@ body{
 }
 
 
+.input-group {
+    font-size: 24px;
+}
 
+#info-input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    width: 250px;
+    height: 30px;
+    color:black;
+}
 
 #info-edit-btn{
+    font-family: 'Noto Sans KR', sans-serif;
     color: white;
+    font-size: 18px;
     background-color: #262626;
     cursor: pointer;
     border-color: white;
-    border-radius: 4px;
+    border-radius: 1px;
+    width: 80px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+#info-edit-btn:hover {
+    background-color: #1b1b1b;
 }

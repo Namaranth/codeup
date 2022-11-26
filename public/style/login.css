@@ -61,8 +61,21 @@ body{
     cursor: pointer;
     border-color: white;
     font-size: 18px;
+    border: 1px solid rgba(187, 187, 187, 0.3);
     border-radius: 4px;
     width: 250px;
     height: 35px;
     margin: 10px 0 0;
+    transition: all 0.7s ease-out;
+    background: linear-gradient(270deg, #1a1a1a, #262626, rgba(34,34,34,0), rgba(34,34,34,0));
+    background-position: 1% 50%;
+    background-size: 300% 300%;
 }
+
+#login:hover {
+    color: #fff;
+    border: 1px solid rgba(223,190,106,0);
+    color: #fff;
+    background-position: 99% 50%;
+}
+
