@@ -181,13 +181,20 @@ ol, ul, li {
     height: 43px;
     font-size: 22px;
     margin: 5px 0 0;
-    color: black;
     border-radius: 4px;
+    border: 1px solid rgba(187, 187, 187, 0.3);
     text-align: center;
+    transition: all 0.7s ease-out;
+    background: linear-gradient(270deg, #1a1a1a, #262626, rgba(34,34,34,0), rgba(34,34,34,0));
+    background-position: 1% 50%;
+    background-size: 300% 300%;
 }
 
 #join-btn:hover {
-    background-color: aliceblue;
+    color: #fff;
+    border: 1px solid rgba(223,190,106,0);
+    color: #fff;
+    background-position: 99% 50%;
 }
 
 
@@ -198,7 +205,7 @@ ol, ul, li {
     width: 300px;
     height: 30px;
     text-align: center;
-    margin-left: 900px;
+    margin-left: 835px;
 }
 
 
@@ -253,13 +260,27 @@ ol, ul, li {
 }
 
 #mail-btn {
-    font-family: 'Noto Sans KR', sans-serif;
-    height: 33px;
-    width: 80px;
-    font-size: 16px;
-    border-radius: 4px;
-    border-color: white;
+    color: white;
     background-color: #262626;
+    cursor: pointer;
+    border-color: white;
+    font-size: 18px;
+    border: 1px solid rgba(187, 187, 187, 0.3);
+    border-radius: 4px;
+    width: 260px;
+    height: 35px;
+    margin: 20px 0 0;
+    transition: all 0.7s ease-out;
+    background: linear-gradient(270deg, #1a1a1a, #262626, rgba(34,34,34,0), rgba(34,34,34,0));
+    background-position: 1% 50%;
+    background-size: 300% 300%;
+}
+
+#mail-btn:hover {
+    color: #fff;
+    border: 1px solid rgba(223,190,106,0);
+    color: #fff;
+    background-position: 99% 50%;
 }
 
 
@@ -281,13 +302,30 @@ ol, ul, li {
 
 #certification-btn {
     font-family: 'Noto Sans KR', sans-serif;
-    height: 33px;
-    width: 80px;
-    font-size: 16px;
-    border-radius: 4px;
-    border-color: white;
+    color: white;
     background-color: #262626;
+    cursor: pointer;
+    border-color: white;
+    font-size: 18px;
+    border: 1px solid rgba(187, 187, 187, 0.3);
+    border-radius: 4px;
+    width: 280px;
+    height: 35px;
+    margin: 20px 0 0;
+    transition: all 0.7s ease-out;
+    background: linear-gradient(270deg, #1a1a1a, #262626, rgba(34,34,34,0), rgba(34,34,34,0));
+    background-position: 1% 50%;
+    background-size: 300% 300%;
 }
+
+#certification-btn:hover {
+    color: #fff;
+    border: 1px solid rgba(223,190,106,0);
+    color: #fff;
+    background-position: 99% 50%;
+}
+
+
 
 #certification-error {
     display: inline-block;

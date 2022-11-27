@@ -18,34 +18,35 @@
     <div class="center">
         <div class="Tag2">
             <a href="/code/CompileC"><button id="TagC2">C</button></a>
+            <button id="TagCpp2">Cpp</button>
         </div>
-        <div class="Tag2">
-            <button id="TagCpp2">C++</button>
+
+        
+        <form id="Save-Form" action="/code/C" method="post" enctype="multipart/form-data">
+            {% if user and user.id %}
+            <textarea id="codetitle" name="codetitle" maxlength="40" placeholder="제목을 입력하세요.">{{read.codetitle}}</textarea>
+
+            <button id="code-btn" name="codebtn" type="submit">저장</button>  
+            {% endif %}
+            <div class = "Box">
+                
+            <div class="CodeBox">
+                <h1 id = "titleCode">Code</h1>
+                <textarea id="code" name="code" is="highlighted-code" >{{read.code}}</textarea>
+            </div>
+                
+            <div class ="ConsoleBox">
+                <h1 id = "titleConsole">Console</h1>
+                <textarea id="output" type="text" name="output"></textarea>
+            </div>
+        </form>   
         </div>
-            <form id="Save-Form" action="/code/Cpp" method="post" enctype="multipart/form-data">
-                {% if user and user.id %}
-                <div class="code-upload">
-                    <textarea id="codetitle" name="codetitle" placeholder="제목을 입력하세요."></textarea>
-                </div>
-                <button id="code-btn" type="submit">저장</button>  
-                {% endif %}
-                <div class = "Box">
-                    <div class="CodeBox">
-                        <h1 id = "titleCode">Code</h1>
-                        <textarea id="code" name="code" is="highlighted-code">{{read.code}}</textarea>
-                    </div>
-            </form>
-                    <div class ="ConsoleBox">
-                        <h1 id = "titleConsole">Console</h1>
-                        <textarea id="output" type="text" name="output"></textarea>
-                    </div>
-                </div>
-        </div>
+    </div>
+<div class="right-side">
+        <button class="ajaxsend" id="ajax_post">실행</button>
+        <a href="/write"><button class="codewrite" id="codewrite">업로드</button></a>
 </div>
-<div class="compile-bottom">
-<button class="ajaxsend" id="ajax_post">실행</button>
-<a href="/write"><button class="codewrite" id="codewrite">업로드</button></a>
-</div>
+
 {% endblock %}   
         
 {% block script %}

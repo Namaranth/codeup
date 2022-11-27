@@ -3,7 +3,6 @@
 {% block content %}
 
         
-        <div class = "menu">
             
             <div class="left-side">
                 {% if user and user.id %}
@@ -26,35 +25,34 @@
             <div class="center">
                 <div class="Tag">
                     <button id="TagC">C</button>
+                    <a href="/code/CompileCpp"><button id="TagCpp">Cpp</button></a>
                 </div>
-                <div class="Tag">
-                    <a href="/code/CompileCpp"><button id="TagCpp">C++</button></a>
+
+                
+                <form id="Save-Form" action="/code/C" method="post" enctype="multipart/form-data">
+                    {% if user and user.id %}
+                    <textarea id="codetitle" name="codetitle" maxlength="40" placeholder="제목을 입력하세요.">{{read.codetitle}}</textarea>
+
+                    <button id="code-btn" name="codebtn" type="submit">저장</button>  
+                    {% endif %}
+                    <div class = "Box">
+                        
+                    <div class="CodeBox">
+                        <h1 id = "titleCode">Code</h1>
+                        <textarea id="code" name="code" is="highlighted-code" >{{read.code}}</textarea>
+                    </div>
+                        
+                    <div class ="ConsoleBox">
+                        <h1 id = "titleConsole">Console</h1>
+                        <textarea id="output" type="text" name="output"></textarea>
+                    </div>
+                </form>   
                 </div>
-                    <form id="Save-Form" action="/code/C" method="post" enctype="multipart/form-data">
-                        {% if user and user.id %}
-                        <div class="code-upload">
-                            <textarea id="codetitle" name="codetitle" maxlength="40" placeholder="제목을 입력하세요.">{{read.codetitle}}</textarea>
-                        </div>
-                        <button id="code-btn" name="codebtn" type="submit">저장</button>  
-                        {% endif %}
-                        <div class = "Box">
-                            <div class="CodeBox">
-                                <h1 id = "titleCode">Code</h1>
-                                <textarea id="code" name="code" is="highlighted-code" >{{read.code}}</textarea>
-                            </div>
-                    </form>
-                            <div class ="ConsoleBox">
-                                <h1 id = "titleConsole">Console</h1>
-                                <textarea id="output" type="text" name="output"></textarea>
-                            </div>
-                        </div>
-                </div>
+            </div>
+        <div class="right-side">
+                <button class="ajaxsend" id="ajax_post">실행</button>
+                <a href="/write"><button class="codewrite" id="codewrite">업로드</button></a>
         </div>
-        <div class="compile-bottom">
-            <button class="ajaxsend" id="ajax_post">실행</button>
-            <a href="/write"><button class="codewrite" id="codewrite">업로드</button></a>
-        </div>
-        <div>{{error}}</div>
  
 {% endblock %}   
         

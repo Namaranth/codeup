@@ -68,11 +68,9 @@ body{
 /* Box */
 .Box {
     display: inline-block;
-    background-color: #262626;
-    width: 1100px;
-    height: 600px;
-    margin-top: 20px;
-    margin-left: 300px;
+    width: 1200px;
+    height: 650px;
+    color:#fff;
 }
 .code-upload {
     display: inline-block;
@@ -100,7 +98,8 @@ body{
 
 #codetitle {
     font-family: 'Noto Sans KR',sans-serif;
-    width: 900px;
+    position: absolute;
+    width: 910px;
     height: 30px;
     font-size: 20px;
     resize:none;
@@ -109,21 +108,25 @@ body{
 /* CodeBox */
 .CodeBox {
     display: inline-block;
-    margin-left: 100px;
+    width: 406px;
+    height: 526px;
+    background-color: #2e3440;
+    margin-top: 80px;
 }
 #titleCode {
+    position: absolute;
+    display: inline-block;
     font-family: 'Noto Sans KR',sans-serif;
-      margin-left: 10px;
-      margin-top: 30px;
-      background-color: #349e7b;
-      width: 100px;
-      text-align: center;
-      font-size: 20px;
-      margin-bottom: 0px;
+    background-color: #349e7b;
+    width: 100px;
+    text-align: center;
+    font-size: 20px;
+    margin-top: -30px;
 }
 #code {
+    display: inline-block;
     width: 400px;
-    height: 500px;
+    height: 520px;
     resize: none;
   }
 
@@ -131,22 +134,24 @@ body{
   /* ConsoleBox */
 .ConsoleBox {
     display: inline-block;
-    position: absolute;
+    width: 406px;
+    height: 526px;
     margin-left: 100px;
 }
 #titleConsole{
     font-family: 'Noto Sans KR',sans-serif;
-    margin-left: 10px;
-    margin-top: 30px;
+    position: absolute;
+    display: inline-block;
     background-color: #59c7e2;
     width: 100px;
     text-align: center;
     font-size: 20px;
-    margin-bottom: 0px;
+    margin-top: -30px;
   }
 #output {
+    display: inline-block;
     width: 400px;
-    height: 500px;
+    height: 520px;
     resize: none;
     background-color: #2e3440;
 }
@@ -154,137 +159,155 @@ body{
 /* LeftSide Center RightSide */
 .left-side {
     display: inline-block;
-    position: absolute;
     font-family: 'Noto Sans KR',sans-serif;
     background-color: #262626;
-    margin: 30px 10px 0;
-    width: 450px;
-    height: 600px;
+    margin-top: 30px;
+    margin-left: 10px;
+    width: 23%;
+    height: 650px;
     overflow: auto;
 }
 
-
 .center {
     display: inline-block;
-    margin: 10px 300px 0;
-    width: 60%;
+    margin-top: 10px;
+    margin-left: 100px;
+    width: 62%;
+    height: 650px;
 }
+
+
+
+
 
 /* Tag */
 .Tag {
+    display: inline-block;
+    width: 450px;
+    height: 50px;
     font-family: 'Noto Sans KR',sans-serif;
     border: none;
     transition: all 0.2s ease-in;
-    margin-bottom: 0;
 }
+
 #TagC {
-    position: absolute;
-    margin-top: 130px;
-    margin-left: 250px;
-    background-color: #262626; 
-    width: 50px;
-    height: 50px;
+    background-color: #349e7b; 
+    width: 150px;
+    height: 40px;
     font-size: 22px;
     border: 0px;
     box-shadow: 0px 2px black; 
     cursor: pointer;
-    z-index: 2;
   }
+
+
  #TagCpp {
-    position: absolute;
-    margin-top: 175px;
-    margin-left: 250px;
-    background-color: #2e3440;
-    width: 50px;
-    height: 50px;
+    display: inline-block;
+    background-color: #59c7e2;
+    width: 150px;
+    height: 40px;
     font-size: 22px;
     border: 0px;
     cursor: pointer;
-    z-index: 1;
+    margin-left: 50px;
 } 
 
 #TagCpp:hover {
-    background-color: #262626; 
+    background-color: #49a3b9; 
 }
 
 
 .Tag2 {
+    display: inline-block;
+    width: 450px;
+    height: 50px;
     font-family: 'Noto Sans KR',sans-serif;
     border: none;
     transition: all 0.2s ease-in;
-    margin-bottom: 0;
 }
- #TagC2 {
-    position: absolute;
-    margin-top: 130px;
-    margin-left: 250px;
-    background-color: #2e3440;
-    width: 50px;
-    height: 50px;
+
+#TagC2 {
+    background-color: #349e7b; 
+    width: 150px;
+    height: 40px;
     font-size: 22px;
     border: 0px;
+    box-shadow: 0px 2px black; 
     cursor: pointer;
-    z-index: 1;
-} 
-#TagCpp2 {
-    position: absolute;
-    margin-top: 175px;
-    margin-left: 250px;
-    background-color: #262626; 
-    width: 50px;
-    height: 50px;
-    font-size: 22px;
-    border: 0px;
-    box-shadow: 0 2px 0 0 black; 
-    cursor: pointer;
-    z-index: 2;
   }
+
+
+ #TagCpp2 {
+    display: inline-block;
+    background-color: #59c7e2;
+    width: 150px;
+    height: 40px;
+    font-size: 22px;
+    border: 0px;
+    cursor: pointer;
+    margin-left: 50px;
+} 
+
 #TagC2:hover {
-    background-color: #262626; 
+    background-color: #2b8365; 
 }
 
 
 /* button */
-.compile-bottom {
-    display: inline-block;
-    width:250px;
-    margin-left: 1365px;
-    margin-top: 30px;
-}
 .ajaxsend {
     font-family: 'Noto Sans KR',sans-serif;
+    position: absolute;
     font-size: 16px;
     height: 35px;
     width: 60px;
-    color: black;
-    cursor: pointer;
+    background-color: #262626;
     border-radius: 4px;
-    border: 0px;
+    cursor: pointer;
+    border: 1px solid rgba(187, 187, 187, 0.3);
+    margin-left: 1500px;
+    margin-top: -530px;
 }
-#codewrite {
-    font-family: 'Noto Sans KR',sans-serif;
-    font-size: 16px;
-    height: 35px;
-    width: 60px;
-    color: black;
-    cursor: pointer;
-    border-radius: 4px;
-    border: 0px;
+.ajaxsend:hover {
+    background-color: #3d3d3d;
 }
 
+#codewrite {
+    font-family: 'Noto Sans KR',sans-serif;
+    position: absolute;
+    font-size: 16px;
+    height: 35px;
+    width: 60px;
+    background-color: #262626;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid rgba(187, 187, 187, 0.3);
+    margin-left: 1500px;
+    margin-top: -390px;
+}
+#codewrite:hover {
+    background-color: #3d3d3d;
+}
+
+
 #code-btn {
+    display: inline-block;
     position: absolute;
     font-family: 'Noto Sans KR',sans-serif;
     font-size: 16px;
+    margin-left: 945px;
+    margin-top: 150px;
     height: 35px;
     width: 60px;
-    margin: 650px 1200px 0;
-    color: black;
+    background-color: #262626;
+    border-radius: 4px;
     cursor: pointer;
-    border-radius: 5px;
-    border: 0px;
+    border: 1px solid rgba(187, 187, 187, 0.3);
     outline: none;
 }
+#code-btn:hover {
+    background-color: #3d3d3d;
+}
+
 
 
 
