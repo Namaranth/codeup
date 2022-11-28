@@ -6,7 +6,7 @@ const spawn = require('child_process').spawn;
 const dayjs = require("dayjs");
 
 const multer = require('multer');
-const { Code, User } = require('../models');
+const { Code, User, Codesend } = require('../models');
 const { isLoggedIn } = require('./middlewares');
 
 router.use(bodyParser.urlencoded({extended: false}));
@@ -216,6 +216,139 @@ router.post('/C', isLoggedIn, upload2.none(), async (req, res, next) => {
     }
   });
 
+  //코드 전송
+router.post('/C/send/:idx',isLoggedIn, async (req, res, next) => {
+  var id = req.params.idx;
+  try {
+    var nick = req.body.receiver;
+    var title = req.body.title;
+    var content = req.body.content;
+    var now = dayjs();
+
+    const receiver = await User.findOne({
+      where:{nick:nick}
+    })
+  
+    const code = await Code.findOne({
+      where:{id:id}
+    })
+  
+    if(receiver){
+      if(title[0] == null){
+          
+        const post = await Codesend.create({
+          title: req.user.nick+" 님이 보낸 코드입니다.",
+          content:content,
+          codetitle: code.codetitle,
+          code: code.code,
+          codeType: code.codeType,
+          sendUsernick: req.user.nick,
+          UserId: receiver.id,
+          created: now.format("YY.MM.DD HH:mm:ss"),
+
+        });
+        res.redirect('/code/CompileC');
+      } else {
+        const post = await Codesend.create({
+          title: title,
+          content:content,
+          codetitle: code.codetitle,
+          code: code.code,
+          codeType: code.codeType,
+          sendUsernick: req.user.nick,
+          UserId: receiver.id,
+          created: now.format("YY.MM.DD HH:mm:ss"),
+        });
+        res.redirect('/code/CompileC');
+      }
+    }else{
+      res.redirect('/code/CompileC');
+    }
+
+  }catch(error) {
+      console.error(error);
+      return next(error);
+  }
+});
+
+//코드 받은거 보기
+router.get('/receiveCode', async (req, res, next) => {
+  try {      
+    var page = Math.max(1, parseInt(req.query.page));
+    var limit = Math.max(1, parseInt(req.query.limit));
+
+    page = !isNaN(page)?page:1;
+    limit = !isNaN(limit)?limit:10;
+
+      const mails = await Codesend.findAll({
+        include: {
+          model: User,
+          attributes: ['id', 'nick'],
+        },
+        where:{UserId:req.user.id},
+        order: [['createdAt', 'DESC']],
+        offset: (page-1)*10, limit: 10
+      });
+
+     const countMails = await Codesend.count({
+      where:{UserId:req.user.id}
+     });
+     var skip = (page-1)*limit;
+     var maxPage = Math.ceil(countMails/limit);
+
+     var max = [];
+     max.length = maxPage;
+
+     for(i = 0; i < maxPage; i++) {
+      max[i] = i+1;
+     }
+
+      res.render('CodeReceiver', {
+        title: '커뮤니티',
+        twits: mails,
+        count: countMails,
+        currentPage: page,
+        maxPage: max,
+        limit: limit
+      });
+      
+    } catch (err) {
+      console.error(err);
+      next(err);
+    }
+});
+
+//코드 받은거 검색
+router.get('/receiver/search/', async (req, res, next) => {
+  var query = req.query.word;
+  const Op = Sequelize.Op;
+  console.log(query);
+  try {
+      const content = await Codesend.findAll({
+          include: {
+              model: User,
+              attributes: ['id', 'nick'],
+          },
+          order: [['createdAt', 'DESC']],
+          where : {
+                title: {
+                  [Op.like]: "%"+query+"%"
+                },  
+                UserId: req.user.id 
+          },
+       });
+       const count = await Codesend.count({});
+       res.render('CodeReceiver', {
+          title: '커뮤니티',
+          twits: content,
+          count: count,
+       });
+  }catch(error) {
+      console.error(error);
+      return next(error);
+  }
+});
+
 
   // 코드 포스트 겟
 router.get('/C/:idx', async (req, res, next) => {
@@ -301,5 +434,83 @@ router.get('/Cpp/delete/:idx', async (req, res) => {
 
   res.redirect("/code/compileCpp");
 })
+
+//받은거 읽어보기
+router.get('/receiver/:idx', isLoggedIn, async (req, res, next) => {
+  // community/다음의 값을 idx로 가져옴
+  var id = req.params.idx;
+  try {
+      const content = await Codesend.findOne({
+          where : {id},
+       });
+       if(content.UserId==req.user.id){
+        const read = await Codesend.update(
+          {state : "read"},
+          {where : { id },
+        });
+
+        res.render('codecontent', {
+          title: '커뮤니티',
+          read: content,
+       });
+       }else{
+         res.redirect('/code/receveCode')
+       }
+       
+  }catch(error) {
+      console.error(error);
+      return next(error);
+  }
+});
+
+//삭제
+router.post('/mail/delete/:idx',isLoggedIn, async (req, res) => {
+  const id = req.params.idx;
+  await Codesend.destroy({
+    where: {id:id}
+  });
+
+  res.redirect("/code/receiver");
+});
+
+//저장
+router.post('/mail/save/:idx', isLoggedIn, async (req, res, next) => {
+  // community/다음의 값을 idx로 가져옴
+  var id = req.params.idx;
+  try {
+      const CodeReceiver = await Codesend.findOne({
+          where : {id},
+       });
+
+       const post = await Code.create({
+        codetitle: req.body.codetitle,
+        code: CodeReceiver.code,
+        codeType:CodeReceiver.codeType,
+        UserId: req.user.id,
+      });
+      res.redirect("/code/compileC")
+  }catch(error) {
+      console.error(error);
+      return next(error);
+  }
+});
+
+router.get('/C/mail/:idx', async (req, res, next) => {
+  var id = req.params.idx;
+  try {
+      const code = await Code.findOne({
+          where : {id},
+       });
+
+       res.render('Codemail',{
+        title:'코드 공유',
+        code:code,
+       })
+
+  }catch(error) {
+      console.error(error);
+      return next(error);
+  }
+});
 
 module.exports = router;

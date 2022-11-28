@@ -2,14 +2,37 @@
 
 {% block content %}
 <div class="content-title">
-    COMMUNITY
+    받은 코드
 </div>
 <div class="content-body">
-    <div id="content-title">{{read.codetitle}}</div>
+    <div id="content-title">{{read.title}}</div>
+      <div class="content-body-info">
+        <span id="content-nick">{{read.sendUsernick}}</span>
+        <span id="content-createdAt">작성일 : {{read.created}}</span>
+            <form id="content-delete" action="/code/mail/delete/{{read.id}}" method="post" enctype="multipart/form-data">
+                <button id="content-delete-btn" type="submit">삭제</button>
+            </form>
+    </div>
 
+    <div class="mail-code-title">
+        <div class="mail-code-title1">
+            코드명:
+        </div>
+        <div class="mail-code-title-content">
+            {{read.codetitle}}
+        </div>
+    </div>
     <pre id="content-content">
-        <div id="code">{{read.code}}</div>
+        <div id="content-content-content">{{read.content}}</div>
+        <div class="codeline">--------------------------------------------------------------------------------코드내용--------------------------------------------------------------------------------</div>
+        <div>{{read.code}}</div>
     </pre>
+    <div id="receve-btns">
+        <form action="/code/mail/save/{{read.id}}" method="post">
+            <textarea id="codetitle" name="codetitle">{{read.codetitle}}</textarea>
+            <button id="codesave" type="submit">저장</button>
+        </form>
+    </div>
 </div>
-
 {% endblock %}
+

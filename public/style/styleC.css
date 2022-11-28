@@ -172,7 +172,7 @@ body{
     display: inline-block;
     margin-top: 10px;
     margin-left: 100px;
-    width: 62%;
+    width: 1000px;
     height: 650px;
 }
 
@@ -642,3 +642,138 @@ margin: 15px;
 /* mypage */
 
 
+
+/* codemail */
+
+#mail{
+    width: 55px;
+    height: 40px;
+    margin: 30px 0 0;
+}
+.mail-tbody{
+    text-align: left;
+}
+
+.mail {
+    font-family: 'Noto Sans KR',sans-serif;
+    display: block;
+    width: 100px;
+    height: 40px;
+    font-size: 24px;
+    margin: 20px 0 0;
+    margin-left: 950px;
+}
+.mail-select{
+    width: 1200px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.mail-search {
+    margin: 0 0 20px;
+    margin-left: 450px;
+}
+#mail-searchBar {
+    font-family: 'Noto Sans KR',sans-serif;
+    color: black;
+    width:180px;
+}
+
+#mail-searchBtn {
+    font-family: 'Noto Sans KR',sans-serif;
+    height: 25px;
+    width: 50px;
+    border-radius: 4px;
+    color: black
+}
+
+.mail-tbody {
+    padding: 10px 0;
+    border-bottom: 1px solid gray;
+}
+
+
+
+.mail-table {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 18px;
+    width: 1200px;
+    margin: 10px 0 0;
+    margin-left: 450px;
+}
+
+
+.mail-code-title1{
+    font-family: 'Noto Sans KR',sans-serif;
+    float: left;
+    font-size: 25px;
+}
+
+.mail-code-title-content{
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 25px;
+    background-color: #262626;
+    width: 1320px;
+    margin-top: 10px;
+    margin-left: 80px;
+}
+
+.codeline{
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 25px;
+    text-align: center;
+}
+
+.mail-input-group {
+    margin-left: 500px;
+    display: block;
+}
+.receiver{
+    font-family: 'Noto Sans KR',sans-serif;
+    margin-top: 3px;
+    font-size: 18px ;
+    float: left;
+}
+#receiver {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 18px;
+    background-color: #262626;
+    width: 500px;
+    height: 25px;
+    resize: none;
+    overflow: hidden;
+    margin-left: 10px;
+
+}
+
+#mail-title {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 18px;
+    background-color: #262626;
+    width: 1200px;
+    height: 33px;
+    resize: none;
+    margin-top: 10px;
+}
+
+#mail-code{
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 18px;
+    background-color: #262626;
+    width: 1200px;
+    height: 33px;
+    resize: none;
+    margin-top: 10px;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 200,
+    'GRAD' 0,
+    'opsz' 24
+  }
+
+.material-symbols-outlined {
+    margin-left: 20px;
+}

@@ -18,6 +18,10 @@ router.get('/', (req, res) => {
     res.render('Main', {title: '메인'});
 });
 
+router.get('/socket', (req, res) => {
+  res.render('socket', {title: "채팅방" });
+})
+
 router.get('/login', isNotLoggedIn, (req, res) => {
     res.render('Login', {title: '로그인'});
 })

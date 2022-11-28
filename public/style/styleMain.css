@@ -103,7 +103,7 @@ ol, ul, li {
 
 /* body */
 .body {
-    display: inline-block;
+    float: bottom;
     width: 820px;
     height: 40px;
     border-radius: 5px;
