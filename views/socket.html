@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+</head>
+<body>
+    <div>F12 Console network창 확인</div>
+    <script>
+        const webSocket = new WebSocket("ws://localhost:80");
+        webSocket.onopen = function () {
+            console.log('서버와 웹소켓 연결 성공!');
+        };
+        webSocket.onmessage = function (event) {
+            console.log(event.data);
+            webSocket.send('클라이언트에서 서버로 답장을 보냅니다');
+        };
+    </script>
+</body>
+</html>

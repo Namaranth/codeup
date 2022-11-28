@@ -1,0 +1,35 @@
+{% extends 'code.html' %}
+
+{% block content %}
+<div class="write-title">
+    Send Code
+</div>
+
+<div>
+    <form id="twit-form" action="/code/C/send/{{code.id}}" method="post" >
+        <div class="mail-input-group">
+            <div class="receiver">
+                받는사람:
+            </div>
+            <textarea id="receiver" name="receiver" maxlength="100" ></textarea>
+        </div>
+        <div class="mail-input-group">
+            <textarea id="mail-title" name="title" maxlength="100" placeholder="제목을 입력하세요."></textarea>
+        </div>
+        <div class="mail-input-group">
+            <input id="mail-code"  name="code" disabled value="{{code.codetitle}}">
+        </div>
+        <div class="mail-input-group">
+            <textarea id="writecontent" name="content" maxlength="500" placeholder="내용을 입력하세요."></textarea>
+        </div>
+        <div>
+            <button id="write-btn" type="submit" class="btn">전송</button>
+            
+        </div>
+    </form>
+  </div>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,44 @@
+{% extends 'code.html' %}
+
+{% block content %}
+    <div>
+        <div class="mail">
+            받은 코드
+        </div>
+        <form class="mail-search" action="/code/receiver/search/">
+            <input id="mail-searchBar" type="text" name="word" placeholder="검색어를 입력하세요.">
+            <input id="mail-searchBtn" type="submit" class="search-button" value="검색">
+        </form>
+        <table class="mail-table">
+            <colgroup>
+                <col style="width: 7%">
+                <col>
+                <col style="width: 15%">
+            </colgroup>
+            <thead class="community-thead">
+                <tr>
+                    <th>닉네임</th>
+                    <th>제목</th>
+                    <th>보낸날짜</th>
+                </tr>
+            </thead>
+            <tbody class="mail-tbody">
+
+                {% for twit in twits %}
+                <tr>               
+                    <td id="mail-twit-nick">{{twit.sendUsernick}}</td>
+                    <td id="mail-twit-title"><a href="/code/receiver/{{twit.id}}">{{twit.title}}</a></td>
+                    <td id="mail-twit-createdAt">{{twit.created}}</td> 
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="mail-page-class-wrap">
+            {% for i in maxPage %}        
+                <a href="/mail?page={{i}}" id="mail-page">{{i}}</a>
+            {% endfor %}
+        </div>
+        
+    </div>
+
+{% endblock %}
