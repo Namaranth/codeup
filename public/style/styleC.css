@@ -514,6 +514,7 @@ margin: 15px;
     margin-top: -15px;
     margin-left: 10px;
     font-size: 18px;
+    overflow: auto;
 }
 
 #recommend-btn{
