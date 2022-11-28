@@ -507,14 +507,13 @@ margin: 15px;
     font-family: 'Noto Sans KR',sans-serif;
     background-color: #262626;
     width: 1400px;
-    height: 500px;
+    height: fit-content;
 }
 
 #content-content-content{
     margin-top: -15px;
     margin-left: 10px;
     font-size: 18px;
-    overflow: auto;
 }
 
 #recommend-btn{
@@ -777,4 +776,11 @@ margin: 15px;
 
 .material-symbols-outlined {
     margin-left: 20px;
+}
+
+#codesave {
+    margin-top: 40px;
+    color: black;
+    width: 80px;
+    height: 40px;
 }

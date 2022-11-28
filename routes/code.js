@@ -26,9 +26,16 @@ router.get('/CompileC', async (req, res, next) => {
           where : {codeType: 'C'},
           order: [['createdAt', 'DESC']],
         });
+        const countMails = await Codesend.count({
+          where:{
+            UserId:req.user.id,
+            state:"unread",
+          }
+        });
         res.render('CompileC', {
           title: '코드',
           twits: codes,
+          countmail: countMails,
         });
       } catch (err) {
         console.error(err);
