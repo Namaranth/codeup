@@ -8,7 +8,13 @@
         {% if user and user.id %}
         {% for twit in twits %}
         {% if twit.UserId == user.id %}
-        <div id="codeindex"><a href="/code/Cpp/{{twit.id}}">{{twit.codetitle}}</a></div>
+        <div id="codeindex">
+            <a href="/code/Cpp/{{twit.id}}">{{twit.codetitle}}
+            </a>
+            <form id="code-delete" action="/code/Cpp/delete/{{twit.id}}">
+                <button type="submit">X</button>
+            </form>
+        </div>
         {% endif %}
         {% endfor %}
         {% else %}

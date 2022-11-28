@@ -293,4 +293,13 @@ router.get('/C/delete/:idx', async (req, res) => {
   res.redirect("/code/compileC");
 })
 
+router.get('/Cpp/delete/:idx', async (req, res) => {
+  const id = req.params.idx;
+  await Code.destroy({
+    where: {id:id}
+  });
+
+  res.redirect("/code/compileCpp");
+})
+
 module.exports = router;
