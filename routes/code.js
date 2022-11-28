@@ -7,7 +7,7 @@ const dayjs = require("dayjs");
 
 const multer = require('multer');
 const { Code, User, Codesend } = require('../models');
-const { isLoggedIn } = require('./middlewares');
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
@@ -26,17 +26,25 @@ router.get('/CompileC', async (req, res, next) => {
           where : {codeType: 'C'},
           order: [['createdAt', 'DESC']],
         });
-        const countMails = await Codesend.count({
-          where:{
-            UserId:req.user.id,
-            state:"unread",
-          }
-        });
-        res.render('CompileC', {
-          title: '코드',
-          twits: codes,
-          countmail: countMails,
-        });
+
+
+        if( req.isAuthenticated() ) {
+          const countMails = await Codesend.count({
+            where:{
+              UserId:req.user.id,
+              state:"unread",
+            }
+          });
+          res.render('CompileC', {
+            title: '코드',
+            twits: codes,
+            countmail: countMails,
+          });
+        }else {
+          res.render('CompileC', {
+            title: '코드',
+          });
+        }
       } catch (err) {
         console.error(err);
         next(err);
@@ -64,7 +72,8 @@ router.get('/CompileCpp', async (req, res, next) => {
 
 
 router.post('/code_receive', function(req,res) {
-    var code = req.body.code;
+    var cod
+    e = req.body.code;
     var source = code.split(/\r\n|\r\n/).join("\n");
     var file='main.c';
     var arr= [];
