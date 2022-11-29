@@ -72,8 +72,7 @@ router.get('/CompileCpp', async (req, res, next) => {
 
 
 router.post('/code_receive', function(req,res) {
-    var cod
-    e = req.body.code;
+    var code = req.body.code;
     var source = code.split(/\r\n|\r\n/).join("\n");
     var file='main.c';
     var arr= [];
