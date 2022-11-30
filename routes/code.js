@@ -94,7 +94,7 @@ router.post('/code_receive', function(req,res) {
 
     compile.on('close',function(data){
         if(arr[0] == null) {
-            var run = spawn('./a.out',[]);
+            var run = spawn('./a.o',[]);
             run.stdout.on('data',function(output){
                 console.log('컴파일 완료');
                 var str = output.toString('utf8');
@@ -138,7 +138,7 @@ router.post('/code_receiveCpp', function(req,res) {
 
     compile.on('close',function(data){
         if(arr2[1] == null) {
-            var run = spawn('./a.out',[]);
+            var run = spawn('./a.o',[]);
             run.stdout.on('data',function(output){
                 console.log('컴파일 완료');
                 var responseData = {'result':'ok','output': output.toString('utf8')};
