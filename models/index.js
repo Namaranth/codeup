@@ -20,6 +20,7 @@ db.Comment = Comment;
 db.Recommend = Recommend;
 db.Codesend = Codesend;
 
+
 User.init(sequelize);
 Post.init(sequelize);
 Code.init(sequelize);
@@ -34,5 +35,6 @@ Code.associate(db);
 Comment.associate(db);
 Recommend.associate(db);
 Codesend.associate(db);
+
 
 module.exports = db;

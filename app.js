@@ -17,8 +17,8 @@ const authRouter = require('./routes/auth');
 const postRouter = require('./routes/post');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
-// socket
-const webSocket = require('./socket');
+
+
 
 
 const app = express();
@@ -99,4 +99,3 @@ const server = app.listen(app.get('port'), () => {
   console.log(app.get('port'),"번 포트에서 대기중입니다.");
 });
 
-webSocket(server);

@@ -1,6 +1,33 @@
-{% extends 'code.html' %}
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/style/codeMail.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <title>
+            {{title}}
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <body>
+            <div class = "header">
+                <a href="/"><img id=Logo src="/image/Logo3.png"></a>
+            </div>
+            <div class="Top_menu">
+                <div id="Top_menu">
+                    <a href="/"><span>HOME</span></a>
+                    <a href="/community"><span>COMMUNITY</span></a>
+                    <span>CHAT</span>
+                    <a href="/code/"><span>CODE</span></a>
+                    <a href="/mypage"><span>MYPAGE</span></a>
+                </div>
+            </div>
 
-{% block content %}
 <div class="write-title">
     Send Code
 </div>
@@ -8,8 +35,13 @@
 <div>
     <form id="twit-form" action="/code/C/send/{{code.id}}" method="post" >
         <div class="mail-input-group">
+            <div class="friendList">
+              <label>검색</label>
+              <input id="searchInput" type="text" placeholder="닉네임을 검색하세요">
+            </div>
+
             <div class="receiver">
-                받는사람:
+                받는사람
             </div>
             <textarea id="receiver" name="receiver" maxlength="100" ></textarea>
         </div>
@@ -29,7 +61,26 @@
     </form>
   </div>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="/script/data.js"></script>
 
+    </body>
+    <script>
+	
+        $(function () {	//화면 로딩후 시작
+            $("#searchInput").autocomplete({  //오토 컴플릿트 시작
+                source: List,	// source는 data.js파일 내부의 List 배열
+                focus : function(event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌	
+                    return false;
+                },
+                minLength: 1,// 최소 글자수
+                delay: 100,	//autocomplete 딜레이 시간(ms)
+                //disabled: true, //자동완성 기능 끄기
+            });
+        });
+    </script>
+</html>
 
-{% endblock %}
 

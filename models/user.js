@@ -42,6 +42,5 @@ module.exports = class User extends Sequelize.Model {
     db.User.hasMany(db.Post);
     db.User.hasMany(db.Comment);
     db.User.hasMany(db.Recommend);
-   
   }
 };

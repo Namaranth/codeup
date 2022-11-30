@@ -1,0 +1,270 @@
+* {
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+}
+
+
+body{
+    margin: 0px;
+    background-color: #1a1a1a;
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: gray;
+    box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
+    border-radius: 100px;
+}
+
+/* Header */
+.header {
+    display: inline-block;
+    color: white;
+    width: 280px;
+    height: 180px;
+    margin-left: 850px;
+}
+#Logo {
+    width: 280px;
+    height: 180px;
+    margin: 30px 0 0;
+}
+
+/* Top Menu */
+.Top_menu {
+    font-family: 'Noto Sans KR',sans-serif;
+    background-color: #262626;
+    height: 40px;
+    margin: 30px 0 0;
+}
+#Top_menu {
+    display: inline-block;
+    height: 40px;
+    width: 820px;
+    margin-left: 580px;
+}
+
+.Top_menu span {
+    color: white;
+    margin-left: 50px;
+    margin-right: 50px;
+    cursor: pointer;
+}
+.Top_menu span:hover {
+    padding: 7px 0;
+    border-bottom: 3px solid white;
+}
+
+
+#mail{
+    width: 55px;
+    height: 40px;
+    margin: 30px 0 0;
+}
+.mail-tbody{
+    text-align: left;
+}
+
+.friendList {
+    float: left;
+    margin-right: 150px;
+    margin-left: 20px;
+    color: black;
+    background-color: #3d3d3d;
+    width: 300px;
+    height: 600px;
+}
+.mail {
+    font-family: 'Noto Sans KR',sans-serif;
+    display: block;
+    width: 100px;
+    height: 40px;
+    font-size: 24px;
+    margin: 20px 0 0;
+    margin-left: 950px;
+}
+
+.mail-select{
+    width: 1200px;
+    text-align: center;
+    font-size: 18px;
+}
+
+#searchInput {
+    color:black;
+}
+
+.mail-search {
+    margin: 0 0 20px;
+    margin-left: 450px;
+}
+#mail-searchBar {
+    font-family: 'Noto Sans KR',sans-serif;
+    color: black;
+    width:180px;
+}
+
+#mail-searchBtn {
+    font-family: 'Noto Sans KR',sans-serif;
+    height: 25px;
+    width: 50px;
+    border-radius: 4px;
+    color: black
+}
+
+.mail-tbody {
+    padding: 10px 0;
+    border-bottom: 1px solid gray;
+}
+
+
+
+.mail-table {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 18px;
+    width: 1200px;
+    margin: 10px 0 0;
+    margin-left: 450px;
+}
+
+
+.mail-code-title1{
+    font-family: 'Noto Sans KR',sans-serif;
+    float: left;
+    font-size: 25px;
+}
+
+.mail-code-title-content{
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 25px;
+    background-color: #262626;
+    width: 1320px;
+    margin-top: 10px;
+    margin-left: 80px;
+}
+
+
+.mail-input-group {
+    display: block;
+}
+.receiver{
+    font-family: 'Noto Sans KR',sans-serif;
+    margin-top: 3px;
+    color: white;
+    font-size: 18px ;
+    float: left;
+}
+#receiver {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 18px;
+    background-color: #262626;
+    color: white;
+    width: 500px;
+    height: 25px;
+    resize: none;
+    overflow: hidden;
+    margin-left: 10px;
+
+}
+
+#mail-title {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 18px;
+    background-color: #262626;
+    color: white;
+    width: 1200px;
+    height: 33px;
+    resize: none;
+    margin-top: 10px;
+}
+
+#mail-code{
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 18px;
+    background-color: #262626;
+    color: white;
+    width: 1200px;
+    height: 33px;
+    resize: none;
+    margin-top: 10px;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 200,
+    'GRAD' 0,
+    'opsz' 24
+  }
+
+.material-symbols-outlined {
+    margin-left: 20px;
+}
+
+#codesave {
+    margin-top: 40px;
+    color: black;
+    width: 80px;
+    height: 40px;
+}
+
+/* Write */
+.write-title {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 24px;
+    display: inline-block;
+    width: 500px;
+    height: 30px;
+    margin-left: 500px;
+    margin-top: 20px;
+}
+
+.write-input-group {
+    margin-left: 500px;
+}
+#write-title {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 18px;
+    background-color: #262626;
+    width: 1200px;
+    height: 33px;
+    resize: none;
+    margin-top: 30px;
+}
+
+#writecontent {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 18px;
+    background-color: #262626;
+    color: white;
+    width: 1200px;
+    height: 400px;
+    resize: none;
+    margin-top: 20px;
+}
+
+#write-btn {
+    font-family: 'Noto Sans KR',sans-serif;
+    cursor: pointer;
+    color: black;
+    font-size: 18px;
+    border-radius: 4px;
+    height: 35px;
+    width: 80px;
+    margin: 30px 0 0;
+    margin-left: 1630px;
+}
+
+#write-btn:hover {
+    background-color: aliceblue;
+}
