@@ -210,6 +210,11 @@ router.post('/password/edit', async (req, res, next) => {
         userMail:email,
         check: Check,
       });
+    } else if(compare) {
+      res.render("passwordEdit", {
+        userMail:email,
+        check: reCheck,
+      });
     } else {
       const password = await User.update({
         password: hash,
