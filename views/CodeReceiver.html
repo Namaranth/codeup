@@ -6,6 +6,11 @@
             받은 코드
         </div>
         <form class="mail-search" action="/code/receiver/search/">
+            <select class="mail-serch-type" name="type">
+                <option value="title">제목</option>
+                <option value="content">내용</option>
+                <option value="titleAndcontent">제목+내용</option>
+                <option value="nick">닉네임</option>
             <input id="mail-searchBar" type="text" name="word" placeholder="검색어를 입력하세요.">
             <input id="mail-searchBtn" type="submit" class="search-button" value="검색">
         </form>

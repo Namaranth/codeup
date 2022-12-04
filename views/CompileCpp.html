@@ -12,7 +12,7 @@
             <a href="/code/Cpp/{{twit.id}}">{{twit.codetitle}}
             </a>
             <form id="code-delete" action="/code/Cpp/delete/{{twit.id}}">
-                <button type="submit">X</button>
+                <button type="submit" onclick="if(!confirm('정말 {{twit.codetitle}}을 삭제하실겁니까?')){return false;}">X</button>
             </form>
 
             <span class="material-symbols-outlined">
@@ -60,6 +60,17 @@
         <a href="/write"><button class="codewrite" id="codewrite">업로드</button></a>
         {% endif %}
 </div>
+{% if user and user.id %}
+        <a class="hiperlink-receive" href="/code/receiveCode">
+            <div class="code-receive-btn">
+                  <img src="/image/mail.png" alt="">
+            </div>
+
+            <div class="mailcount">
+             {{countmail}}
+             </div>
+         </a>
+         {% endif %}
 
 {% endblock %}   
         

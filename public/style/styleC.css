@@ -330,12 +330,19 @@ body{
     text-align: center;
     font-size: 18px;
 }
+.community-serch-type{
+    color: #000;
+}
+.community-serch-type option{
+    color: #000;
+}
 
 .community-search {
     margin: 0 0 20px;
     margin-left: 400px;
 }
 #community-searchBar {
+    margin-left: 10px;
     font-family: 'Noto Sans KR',sans-serif;
     color: black;
     width:180px;
@@ -721,6 +728,7 @@ margin: 15px;
     font-family: 'Noto Sans KR',sans-serif;
     color: black;
     width:180px;
+    margin-left: 10px;
 }
 
 #mail-searchBtn {
@@ -900,4 +908,11 @@ margin: 15px;
     display: inline-block;
     border-radius: 100px;
     text-align: center;
+}
+
+.mail-serch-type{
+    color: #000;
+}
+.mail-serch-type option{
+    color: #000;
 }

@@ -263,20 +263,28 @@ body{
 
 #write-btn {
     font-family: 'Noto Sans KR',sans-serif;
+    margin-top: 15px;
+    color: white;
     cursor: pointer;
-    color: black;
+    border-color: white;
+    font-family: 'Noto Sans KR',sans-serif;
     font-size: 18px;
-    border-radius: 4px;
-    height: 35px;
     width: 80px;
-    margin: 30px 0 0;
-    margin-left: 1630px;
+    height: fit-content;
+    margin-left: 1600px;
+    transition: all 0.7s ease-out;
+    background: linear-gradient(270deg, #1a1a1a, #262626, rgba(34,34,34,0), rgba(34,34,34,0));
+    background-position: 1% 50%;
+    background-size: 300% 300%;
 }
+
 
 #write-btn:hover {
-    background-color: aliceblue;
+    color: #fff;
+    border: 1px solid rgba(223,190,106,0);
+    color: #fff;
+    background-position: 99% 50%;
 }
-
 
 /* recentSend */
 .friendList-index {

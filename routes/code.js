@@ -62,10 +62,23 @@ router.get('/CompileCpp', async (req, res, next) => {
           where : {codeType: 'Cpp'},
           order: [['createdAt', 'DESC']],
         });
-        res.render('CompileCpp', {
-          title: '코드',
-          twits: codes,
-        });
+        if( req.isAuthenticated() ) {
+          const countMails = await Codesend.count({
+            where:{
+              UserId:req.user.id,
+              state:"unread",
+            }
+          });
+          res.render('CompileCpp', {
+            title: '코드',
+            twits: codes,
+            countmail: countMails,
+          });
+        }else {
+          res.render('CompileCpp', {
+            title: '코드',
+          });
+        }
       } catch (err) {
         console.error(err);
         next(err);
@@ -375,27 +388,103 @@ router.post('/mail/favoriteDelete', async (req, res, next) => {
 router.get('/receiver/search/', async (req, res, next) => {
   var query = req.query.word;
   const Op = Sequelize.Op;
+  const type = req.query.type;
   console.log(query);
+  console.log(type);
   try {
+    if(type=="title"){
       const content = await Codesend.findAll({
-          include: {
-              model: User,
-              attributes: ['id', 'nick'],
-          },
-          order: [['createdAt', 'DESC']],
-          where : {
+        include: {
+            model: User,
+            attributes: ['id', 'nick'],
+        },
+        order: [['createdAt', 'DESC']],
+        where : {
+              title: {
+                [Op.like]: "%"+query+"%"
+              },  
+              UserId: req.user.id 
+        },
+     });
+     const count = await Codesend.count({});
+     res.render('CodeReceiver', {
+        title: '커뮤니티',
+        twits: content,
+        count: count,
+     });
+    }
+    if(type=="content"){
+      const content = await Codesend.findAll({
+        include: {
+            model: User,
+            attributes: ['id', 'nick'],
+        },
+        order: [['createdAt', 'DESC']],
+        where : {
+              content: {
+                [Op.like]: "%"+query+"%"
+              },  
+              UserId: req.user.id 
+        },
+     });
+     const count = await Codesend.count({});
+     res.render('CodeReceiver', {
+        title: '커뮤니티',
+        twits: content,
+        count: count,
+     });
+    }
+    if(type=="titleAndcontent"){
+      const content = await Codesend.findAll({
+        include: {
+            model: User,
+            attributes: ['id', 'nick'],
+        },
+        order: [['createdAt', 'DESC']],
+        where : {
+              [Sequelize.Op.or]:[{
                 title: {
                   [Op.like]: "%"+query+"%"
                 },  
                 UserId: req.user.id 
-          },
-       });
-       const count = await Codesend.count({});
-       res.render('CodeReceiver', {
-          title: '커뮤니티',
-          twits: content,
-          count: count,
-       });
+              },{
+                content: {
+                  [Op.like]: "%"+query+"%"
+                },  
+                UserId: req.user.id 
+              }]
+        },
+     });
+     const count = await Codesend.count({});
+     res.render('CodeReceiver', {
+      title: '커뮤니티',
+      twits: content,
+      count: count,
+   });
+    }
+    if(type=="nick"){
+      const content = await Codesend.findAll({
+        include: {
+            model: User,
+            attributes: ['id', 'nick'],
+        },
+        order: [['createdAt', 'DESC']],
+        where : {
+              sendUsernick: {
+                [Op.like]: "%"+query+"%"
+              },  
+              UserId: req.user.id 
+        },
+     });
+     const count = await Codesend.count({});
+     res.render('CodeReceiver', {
+      title: '커뮤니티',
+      twits: content,
+      count: count,
+   });
+    }
+
+      
   }catch(error) {
       console.error(error);
       return next(error);

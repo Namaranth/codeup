@@ -476,51 +476,101 @@ router.get('/bestcommunity', async (req, res, next) => {
   router.get('/community/search/', async (req, res, next) => {
     var query = req.query.word;
     const Op = Sequelize.Op;
+    const type =req.query.type;
     console.log(query);
     try {
+      if(type=="title"){
         const content = await Post.findAll({
-            include: {
-                model: User,
-                attributes: ['id', 'nick'],
-            },
-            order: [['createdAt', 'DESC']],
-            where : {
-                  title: {
-                    [Op.like]: "%"+query+"%"
-                  }   
-            },
-         });
-         const count = await Post.count({});
-         res.render('Community', {
-            title: '커뮤니티',
-            twits: content,
-            count: count,
-         });
-    }catch(error) {
-        console.error(error);
-        return next(error);
-    }
-  });
-
-  router.post('/community/edit/:idx', isLoggedIn, async (req, res, next) => {
-    var id = req.params.idx;
-  try {
-      const content = await Post.findOne({
           include: {
               model: User,
               attributes: ['id', 'nick'],
           },
-          where : {id},
+          order: [['createdAt', 'DESC']],
+          where : {
+                title: {
+                  [Op.like]: "%"+query+"%"
+                }   
+          },
        });
+       const count = await Post.count({});
+       res.render('Community', {
+        title: '커뮤니티',
+        twits: content,
+        count: count,
+     });
+      }
+      if(type=="titleAndcontent"){
+        const content = await Post.findAll({
+          include: {
+              model: User,
+              attributes: ['id', 'nick'],
+          },
+          order: [['createdAt', 'DESC']],
+          where : {
+            [Sequelize.Op.or]: [{
+              title: {
+                [Op.like]: "%"+query+"%"
+              }  
+          }, {
+            content: {
+              [Op.like]: "%"+query+"%"
+            }  
+          }], 
+          },
+       });
+       const count = await Post.count({});
+       res.render('Community', {
+        title: '커뮤니티',
+        twits: content,
+        count: count,
+     });
+    }
+    
+    if(type=="content"){
+      const content = await Post.findAll({
+        include: {
+            model: User,
+            attributes: ['id', 'nick'],
+        },
+        order: [['createdAt', 'DESC']],
+        where : {
+              content: {
+                [Op.like]: "%"+query+"%"
+              }   
+        },
+     });
+     const count = await Post.count({});
+     res.render('Community', {
+      title: '커뮤니티',
+      twits: content,
+      count: count,
+   });
+    }
 
-       res.render('edit', {
-          title: '커뮤니티',
-          read: content,
-       });
-  }catch(error) {
-      console.error(error);
-      return next(error);
-  }
+    if(type=="nick"){
+      const que = `(SELECT id FROM users WHERE nick LIKE '%${query}%' )`;
+      const content = await Post.findAll({
+        include: {
+            model: User,
+            attributes: ['id', 'nick'],
+        },
+        order: [['createdAt', 'DESC']],
+        where:{
+          UserId:{[Op.in]:Sequelize.literal(que)}
+        }
+     });
+     const count = await Post.count({});
+     res.render('Community', {
+      title: '커뮤니티',
+      twits: content,
+      count: count,
+   });
+    }
+         
+    }catch(error) {
+        console.error(error);
+        return next(error);
+    }
   });
 
 
