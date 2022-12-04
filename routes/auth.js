@@ -18,22 +18,22 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
     const Check = "비밀번호가 틀립니다.";
     
     if(exNick) {
-      res.render("SignUp", {
+      res.render("Signup", {
         userMail:email,
         error: Error
       });
     }else if (nick[0] == null || password[0] == null) {
-      res.render("SignUp", {
+      res.render("Signup", {
         userMail:email,
         Null: Null
       });
     }else if(password != checkpassword){
-      res.render("SignUp", {
+      res.render("Signup", {
         userMail:email,
         check: Check
       });
     }else if(password.length < 8) {
-      res.render("SignUp", {
+      res.render("Signup", {
         userMail:email,
       });
     }else {
