@@ -197,21 +197,21 @@ router.post('/password/edit', async (req, res, next) => {
     var compare = await bcrypt.compare(pass, presentPassword.password);
 
     if(pass[0] == null) {
-      res.render("passwordEdit", {
+      res.render("PasswordEdit", {
         userMail:email,
         Null: Null
       });
     } else if(pass.length < 8) {
-      res.render("passwordEdit", {
+      res.render("PasswordEdit", {
         userMail:email,
       });
     } else if(pass != repass) {
-      res.render("passwordEdit", {
+      res.render("PasswordEdit", {
         userMail:email,
         check: Check,
       });
     } else if(compare) {
-      res.render("passwordEdit", {
+      res.render("PasswordEdit", {
         userMail:email,
         check: reCheck,
       });
