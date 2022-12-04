@@ -46,7 +46,7 @@
                     <td id="community-twit-title"><a href="/community/post?postId={{twit.id}}">{{twit.title}}</a></td>
                     <td id="community-twit-id">{{twit.commentCount}} </td>
                     <td id="community-twit-id">{{twit.Recommend}} </td>
-                    <td id="community-twit-nick">{{twit.User.nick}}</td>
+                    <td id="community-twit-nick" style="text-overflow: ellipsis;">{{twit.User.nick}}</td>
                     <td id="community-twit-createdAt">{{twit.created}}</td> 
                 </tr>
                 {% endfor %}
