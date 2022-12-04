@@ -511,9 +511,9 @@ router.get('/bestcommunity', async (req, res, next) => {
   });
 
 
-router.get('/community/:idx', isLoggedIn, async (req, res, next) => {
+router.get('/community/post', isLoggedIn, async (req, res, next) => {
   // community/다음의 값을 idx로 가져옴
-  var id = req.params.idx;
+  var id = req.query.postId;
   try {
       const content = await Post.findOne({
           include: {

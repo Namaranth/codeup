@@ -11,12 +11,14 @@
         </form>
         <table class="mail-table">
             <colgroup>
+                <col style="width: 5%">
                 <col style="width: 7%">
                 <col>
                 <col style="width: 15%">
             </colgroup>
             <thead class="community-thead">
                 <tr>
+                    <th>&nbsp&nbsp</th>
                     <th>닉네임</th>
                     <th>제목</th>
                     <th>보낸날짜</th>
@@ -25,6 +27,11 @@
             <tbody class="mail-tbody">
                 {% for twit in twits %}
                 <tr>               
+                    {% if twit.state=="unread" %}
+                    <td id="mail-twit-state"><span class="material-symbols-outlined">mail</span></td> 
+                    {%else%}
+                    <td id="mail-twit-state"><span class="material-symbols-outlined">drafts</span></td>
+                    {% endif %}    
                     <td id="mail-twit-nick">{{twit.sendUsernick}}</td>
                     <td id="mail-twit-title"><a href="/code/receiver/{{twit.id}}">{{twit.title}}</a></td>
                     <td id="mail-twit-createdAt">{{twit.created}}</td> 

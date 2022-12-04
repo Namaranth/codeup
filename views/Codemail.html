@@ -33,13 +33,59 @@
 </div>
 
 <div>
-    <form id="twit-form" action="/code/C/send/{{code.id}}" method="post" >
-        <div class="mail-input-group">
-            <div class="friendList">
-              <label>검색</label>
-              <input id="searchInput" type="text" placeholder="닉네임을 검색하세요">
+    <div class="friendList-index">
+        <div id="check-btn">
+            <span class="material-symbols-outlined">mail</span>
+            <span id="tooltip-mail">메일</span>
+        </div>
+        <div id="favorite-btn">
+            <span class="material-symbols-outlined">star</span>
+            <span id="tooltip-favorite">즐겨찾기</span>
+        </div>
+    </div>
+
+    <div class="friendList">
+        <div class="mailBox">
+            <div id="recentMailUser">최근 내가 메일을 보낸 사람</div>
+            <div id="recentSend">
+            {% for recent in recentSend %}
+                <div class="">
+                    {{ recent.nick }}
+                </div>
+            {% endfor %}
             </div>
 
+            <div id="recentMailUser2">최근 내게 메일을 보낸 사람</div>
+            <div id="recentSend2" >
+            {% for reception in recentReception %}
+                <div>
+                    {{ reception.nick }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+
+        <div class="favoriteBox">
+            <div id="favoriteMailUser">즐겨찾기 목록</div>
+            <div id="favoriteIndex">
+                
+                    {% for favorite in favorites %}
+                    <form action="/code/mail/favoriteDelete" method="post">
+                        <div class="favoriteNickAndDelete">
+                            <input name="codeid" value="{{code.id}}" hidden>
+         
+                            <input id= "favoritedNick" name="favoritedNick" value="{{ favorite.nick }}" readonly style="resize: none;"></input>
+                            <input type="submit" id="favoritedDelete" value="삭제"></input>
+                        </div>
+                    </form>
+                    {% endfor %}
+            </div>
+        </div>
+
+    </div>
+    <form id="twit-form" action="/code/C/send/{{code.id}}" method="post" >
+        <div class="mail-input-group">
+            
             <div class="receiver">
                 받는사람
             </div>
@@ -64,22 +110,31 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="/script/data.js"></script>
-
+    <script src="/script/data.js"></script>
     </body>
     <script>
-	
         $(function () {	//화면 로딩후 시작
-            $("#searchInput").autocomplete({  //오토 컴플릿트 시작
-                source: List,	// source는 data.js파일 내부의 List 배열
-                focus : function(event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌	
+            $("#receiver").autocomplete({  //오토 컴플릿트 시작
+                type: 'get',
+                source: '/code/json',
+                dataType : 'json',
+                focus : function(event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌   
                     return false;
                 },
                 minLength: 1,// 최소 글자수
-                delay: 100,	//autocomplete 딜레이 시간(ms)
-                //disabled: true, //자동완성 기능 끄기
+                delay: 100,   //autocomplete 딜레이 시간(ms)
             });
         });
+
+        $('#check-btn').click(function() {
+            $('.favoriteBox').hide();
+            $('.mailBox').fadeIn();
+        })
+        $('#favorite-btn').click(function() {
+            $('.mailBox').hide();
+            $('.favoriteBox').fadeIn();
+        })
+
     </script>
 </html>
 

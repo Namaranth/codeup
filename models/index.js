@@ -7,6 +7,7 @@ const Code = require('./code');
 const Comment = require('./comment')
 const Recommend = require('./recommend')
 const Codesend = require('./codesend');
+const Favorite = require('./favorite');
 
 const db = {};
 const sequelize = new Sequelize(config.database, config.username, config.password, config, {
@@ -19,6 +20,7 @@ db.Code = Code;
 db.Comment = Comment;
 db.Recommend = Recommend;
 db.Codesend = Codesend;
+db.Favorite = Favorite;
 
 
 User.init(sequelize);
@@ -27,6 +29,7 @@ Code.init(sequelize);
 Comment.init(sequelize);
 Recommend.init(sequelize);
 Codesend.init(sequelize);
+Favorite.init(sequelize);
 
 
 User.associate(db);
@@ -35,6 +38,7 @@ Code.associate(db);
 Comment.associate(db);
 Recommend.associate(db);
 Codesend.associate(db);
+Favorite.associate(db);
 
 
 module.exports = db;

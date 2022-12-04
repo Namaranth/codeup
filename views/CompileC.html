@@ -60,14 +60,19 @@
                 <button class="ajaxsend" id="ajax_post">실행</button>
                 {% if user and user.id %}
                 <a href="/write"><button class="codewrite" id="codewrite">업로드</button></a>
-                <span class="material-symbols-outlined">
-                    <a href="/code/receiveCode">local_post_office</a>
-                    </span>
                 {% endif %}
-                <div>
-                    {{countmail}}
-                </div>
         </div>
+        {% if user and user.id %}
+        <a class="hiperlink-receive" href="/code/receiveCode">
+            <div class="code-receive-btn">
+                  <img src="/image/mail.png" alt="">
+            </div>
+
+            <div class="mailcount">
+             {{countmail}}
+             </div>
+         </a>
+         {% endif %}
  
 {% endblock %}   
         

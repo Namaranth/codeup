@@ -24,7 +24,7 @@ module.exports = class Code extends Sequelize.Model {
         allowNull: false,
       },
       sendUsernick:{
-        type: Sequelize.STRING(15),
+        type: Sequelize.STRING(30),
         allowNull: false,
       },
       created: {
@@ -34,6 +34,14 @@ module.exports = class Code extends Sequelize.Model {
       state:{
         type: Sequelize.STRING(15),
         defaultValue: "unread",
+      },
+      userNick:{
+        type: Sequelize.STRING(30),
+        allowNull: false,
+      },
+      sendUserId: {
+        type: Sequelize.STRING(10),
+        allowNull: true,
       }
       
     }, {

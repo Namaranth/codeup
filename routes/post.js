@@ -32,6 +32,8 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
       }
     }
     var now = dayjs();
+    now = now.add(9, "hour");
+
     if(notContent()) {
       res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
       res.write("<script>alert('내용을 입력해주세요.')</script>");
@@ -79,7 +81,8 @@ router.post('/comment/:idx', isLoggedIn, upload2.none(), async (req, res, next) 
   var id = req.params.idx;
   try {
     var now = dayjs();
-
+    now = now.add(9, "hour");
+    
     const comment = await Comment.create({
       review: req.body.review,
       UserId: req.user.id,

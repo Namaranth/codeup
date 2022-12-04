@@ -12,27 +12,50 @@
             <form id="content-delete" action="/code/mail/delete/{{read.id}}" method="post" enctype="multipart/form-data">
                 <button id="content-delete-btn" type="submit">삭제</button>
             </form>
+            {% if favorite.favoriteId == read.sendUserId %}
+            {% else %}
+            <a id="favorite"><span>즐겨찾기</span></a>
+            {% endif %}
+            
+
     </div>
 
     <div class="mail-code-title">
         <div class="mail-code-title1">
-            코드명:
+            코드명
         </div>
         <div class="mail-code-title-content">
             {{read.codetitle}}
         </div>
     </div>
     <pre id="content-content">
+        {%if read.content[0] == "" %}
         <div id="content-content-content">{{read.content}}</div>
-        <div class="codeline">--------------------------------------------------------------------------------코드내용--------------------------------------------------------------------------------</div>
-        <div>{{read.code}}</div>
+        {%endif%}
+        <div id="content-code">{{read.code}}</div>
     </pre>
     <div id="receive-btns">
         <form action="/code/mail/save/{{read.id}}" method="post">
-            <textarea id="codetitle" name="codetitle">{{read.codetitle}}</textarea>
+            <div id="codeT">제목</div>
+            <div class="codename">
+                <textarea id="codename" name="codetitle">{{read.codetitle}}</textarea>
+            </div>
             <button id="codesave" type="submit">저장</button>
         </form>
     </div>
 </div>
+
+<script>
+    $(function() {
+        $('#favorite').click(function() {
+            $.ajax({
+                type:'get',
+                url:"/code/mail/favorite?id={{user.id}}&favorite={{read.sendUserId}}",
+                dataType:'query',
+            })
+            $('#favorite').hide();
+        })
+    })
+</script>
 {% endblock %}
 

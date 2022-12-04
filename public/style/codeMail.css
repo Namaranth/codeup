@@ -76,13 +76,21 @@ body{
 }
 
 .friendList {
+    font-family: 'Noto Sans KR',sans-serif;
     float: left;
     margin-right: 150px;
     margin-left: 20px;
-    color: black;
-    background-color: #3d3d3d;
+    color: white;
+    background-color: #262626;
     width: 300px;
-    height: 600px;
+    height: 570px;
+    transition: all 0.3s;
+}
+#searchLabel {
+    margin-left: 10px;
+}
+#searchInput {
+    margin-left: 20px;
 }
 .mail {
     font-family: 'Noto Sans KR',sans-serif;
@@ -267,4 +275,145 @@ body{
 
 #write-btn:hover {
     background-color: aliceblue;
+}
+
+
+/* recentSend */
+.friendList-index {
+    width: 300px;
+    height: 30px;
+    margin-left: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid gray;
+}
+#check-btn {
+    position: relative;
+    font-family: 'Noto Sans KR',sans-serif;
+    display: inline-block;
+    width: 130px;
+    height: 30px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 3px;
+    margin-left: 15px;
+}
+
+#check-btn #tooltip-mail {
+    visibility: hidden;
+    width: 120px;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    left: 11%;
+    top: -100%;
+    position: absolute;
+    z-index: 1;
+}
+#check-btn:hover #tooltip-mail {
+    visibility: visible;
+}
+
+
+#favorite-btn {
+    font-family: 'Noto Sans KR',sans-serif;
+    display: inline-block;
+    width: 130px;
+    height: 30px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 3px;
+}
+
+#favorite-btn #tooltip-favorite {
+    visibility: hidden;
+    width: 120px;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    left: 185px;
+    top: 310px;
+    position: absolute;
+    z-index: 1;
+}
+#favorite-btn:hover #tooltip-favorite {
+    visibility: visible;
+}
+
+
+#userSearch {
+    width: 300px;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid white;
+}
+#recentMailUser {
+    margin-left: 10px;
+}
+#recentSend {
+    width: 280px;
+    height: 220px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: #727272;
+    overflow: auto;
+}
+
+#recentMailUser2 {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#recentSend2 {
+    width: 280px;
+    height: 220px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: #727272;
+    overflow: auto;
+}
+
+.mailBox{
+    display:none;
+}
+
+
+.favoriteBox{
+    display:none;
+}
+
+
+#favoriteMailUser {
+    margin-left: 10px;
+}
+#favoriteIndex {
+    width: 280px;
+    height: 480px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: gray;
+    overflow: auto;
+}
+
+#favoriteDelete {
+    cursor: pointer;
+}
+
+.favoriteNickAndDelete {
+    border-bottom: 1px solid white;
+}
+#favoritedNick {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 16px;
+    color: white;
+    background-color: transparent;
+    border: 0;
+    width: 210px;
+    margin-left: 5px;
+}
+
+#favoritedDelete {
+    background-color: transparent;
+    color:white;
+    border: 0;
 }

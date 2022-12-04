@@ -1,13 +1,15 @@
 const express = require('express');
 const fs = require('fs');
+var Sequelize = require("sequelize");
 const router = express.Router();
 const bodyParser = require('body-parser');
 const spawn = require('child_process').spawn;
 const dayjs = require("dayjs");
 
 const multer = require('multer');
-const { Code, User, Codesend } = require('../models');
+const { Code, User, Codesend, sequelize, Favorite } = require('../models');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
+const { get } = require('http');
 
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
@@ -167,6 +169,7 @@ router.post('/C', isLoggedIn, upload2.none(), async (req, res, next) => {
     try {
       var title = req.body.codetitle;
       var now = dayjs();
+      now = now.add(9, "hour");
 
       const exTitle = await Code.findOne({
         where: {codetitle: title, UserId: req.user.id}
@@ -206,7 +209,8 @@ router.post('/C', isLoggedIn, upload2.none(), async (req, res, next) => {
     try {
       var title = req.body.codetitle;
       var now = dayjs();
-
+      now = now.add(9, "hour");
+      
       if(title[0] == null) {
 
         const post = await Code.create({
@@ -232,13 +236,14 @@ router.post('/C', isLoggedIn, upload2.none(), async (req, res, next) => {
   });
 
   //코드 전송
-router.post('/C/send/:idx',isLoggedIn, async (req, res, next) => {
+router.post('/C/send/:idx', isLoggedIn, async (req, res, next) => {
   var id = req.params.idx;
   try {
     var nick = req.body.receiver;
     var title = req.body.title;
     var content = req.body.content;
     var now = dayjs();
+    now = now.add(9, "hour");
 
     const receiver = await User.findOne({
       where:{nick:nick}
@@ -259,8 +264,9 @@ router.post('/C/send/:idx',isLoggedIn, async (req, res, next) => {
           codeType: code.codeType,
           sendUsernick: req.user.nick,
           UserId: receiver.id,
+          userNick: receiver.nick,
+          sendUserId: req.user.id,
           created: now.format("YY.MM.DD HH:mm:ss"),
-
         });
         res.redirect('/code/CompileC');
       } else {
@@ -272,6 +278,8 @@ router.post('/C/send/:idx',isLoggedIn, async (req, res, next) => {
           codeType: code.codeType,
           sendUsernick: req.user.nick,
           UserId: receiver.id,
+          userNick: receiver.nick,
+          sendUserId: req.user.id,
           created: now.format("YY.MM.DD HH:mm:ss"),
         });
         res.redirect('/code/CompileC');
@@ -295,15 +303,15 @@ router.get('/receiveCode', async (req, res, next) => {
     page = !isNaN(page)?page:1;
     limit = !isNaN(limit)?limit:10;
 
-      const mails = await Codesend.findAll({
-        include: {
-          model: User,
-          attributes: ['id', 'nick'],
-        },
-        where:{UserId:req.user.id},
-        order: [['createdAt', 'DESC']],
-        offset: (page-1)*10, limit: 10
-      });
+    const mails = await Codesend.findAll({
+      include: {
+        model: User,
+        attributes: ['id', 'nick'],
+      },
+      where:{UserId:req.user.id},
+      order: [['createdAt', 'DESC']],
+      offset: (page-1)*10, limit: 10
+    });
 
      const countMails = await Codesend.count({
       where:{UserId:req.user.id}
@@ -331,6 +339,36 @@ router.get('/receiveCode', async (req, res, next) => {
       console.error(err);
       next(err);
     }
+});
+
+
+// 즐겨찾기
+router.get('/mail/favorite', async (req, res, next) => {
+  const UserId = req.query.id;
+  const favoriteId = req.query.favorite;
+
+  await Favorite.create({
+    UserId: UserId,
+    favoriteId: favoriteId,
+  })
+});
+
+// 즐겨찾기 삭제
+router.post('/mail/favoriteDelete', async (req, res, next) => {
+  const nick = req.body.favoritedNick; 
+  const codeId = req.body.codeid;
+
+  const idFromNick = await User.findOne({
+    attributes: ['id'],
+    where: {nick: nick}
+  })
+
+  const deleteQuery = `DELETE FROM favorites WHERE UserId = ? AND favoriteId = ?`;
+  await sequelize.query(deleteQuery, {
+    type: Sequelize.QueryTypes.DELETE,
+    replacements: [req.user.id, idFromNick.id],
+  })
+  res.redirect(`/code/C/mail/${codeId}`);
 });
 
 //코드 받은거 검색
@@ -367,15 +405,15 @@ router.get('/receiver/search/', async (req, res, next) => {
 
   // 코드 포스트 겟
 router.get('/C/:idx', async (req, res, next) => {
-  // community/다음의 값을 idx로 가져옴
   var id = req.params.idx;
+
   try {
       const codes = await Code.findOne({
           include: {
               model: User,
               attributes: ['id', 'nick'],
           },
-          where : {id},
+          where : {id, UserId: req.user.id},
        });
        const codeC = await Code.findAll({
           include: {
@@ -452,24 +490,28 @@ router.get('/Cpp/delete/:idx', async (req, res) => {
 
 //받은거 읽어보기
 router.get('/receiver/:idx', isLoggedIn, async (req, res, next) => {
-  // community/다음의 값을 idx로 가져옴
   var id = req.params.idx;
   try {
       const content = await Codesend.findOne({
-          where : {id},
+          where : {id, UserId: req.user.id},
        });
-       if(content.UserId==req.user.id){
+      if(content.UserId == req.user.id){
         const read = await Codesend.update(
           {state : "read"},
           {where : { id },
-        });
+      });
 
-        res.render('codecontent', {
-          title: '커뮤니티',
-          read: content,
+      const favorite = await Favorite.findOne({
+        where:{UserId : req.user.id, favoriteId : content.sendUserId},
+      })
+
+      res.render('codecontent', {
+        title: '커뮤니티',
+        read: content,
+        favorite: favorite,
        });
        }else{
-         res.redirect('/code/receveCode')
+         res.redirect('/code/receiveCode')
        }
        
   }catch(error) {
@@ -510,17 +552,62 @@ router.post('/mail/save/:idx', isLoggedIn, async (req, res, next) => {
   }
 });
 
+router.get('/json', async (req, res) => {
+  var text = req.query.term;
+  const Op = Sequelize.Op;
+  var nick = await User.findAll({
+    where: { 
+      nick: {
+        [Op.like]: "%"+text+"%"
+      }
+    }
+  });
+
+  var responseData = nick;
+  var n = JSON.stringify(responseData, ['nick']);
+  n = JSON.parse(n);
+  var jsonNick = [];
+  for(var i = 0; i < n.length; i++) {
+    jsonNick.push(n[i][Object.keys(n[i])[0]]);
+  }
+  // 닉네임 검색했을때 결과
+  console.log(jsonNick);
+  res.json(jsonNick);
+})
+
 router.get('/C/mail/:idx', async (req, res, next) => {
   var id = req.params.idx;
+  const Op = Sequelize.Op;
   try {
       const code = await Code.findOne({
-          where : {id},
+          where : {id, UserId: req.user.id},
        });
 
-       res.render('Codemail',{
+      const recentQuery = `SELECT DISTINCT nick FROM users WHERE id IN (SELECT UserId FROM codesends WHERE sendUserId = ? ORDER BY codesends.id DESC)`;
+      const recent = await sequelize.query(recentQuery, {
+        type: Sequelize.QueryTypes.SELECT,
+        replacements: [req.user.id],
+      });
+
+      const receptionQuery = `SELECT DISTINCT nick FROM users WHERE id IN (SELECT sendUserId FROM codesends WHERE UserId = ? ORDER BY codesends.id DESC)`;
+      const reception = await sequelize.query(receptionQuery, {
+        type: Sequelize.QueryTypes.SELECT,
+        replacements: [req.user.id],
+       });
+       
+      const favoritQuery = `SELECT nick, id FROM users WHERE id IN (SELECT favoriteId FROM favorites WHERE UserId = ?)`;
+      const favorite = await sequelize.query(favoritQuery, {
+        type: Sequelize.QueryTypes.SELECT,
+        replacements: [req.user.id],
+      })
+
+      res.render('Codemail',{
         title:'코드 공유',
         code:code,
-       })
+        recentSend: recent,
+        recentReception: reception,
+        favorites: favorite,
+      })
 
   }catch(error) {
       console.error(error);

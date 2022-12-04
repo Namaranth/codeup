@@ -38,7 +38,7 @@
                 {% for twit in twits %}
                 <tr>               
                     <td id="community-twit-id">{{twit.id}}</td>
-                    <td id="community-twit-title"><a href="/community/{{twit.id}}">{{twit.title}}</a></td>
+                    <td id="community-twit-title"><a href="/community/post?postId={{twit.id}}">{{twit.title}}</a></td>
                     <td id="community-twit-id">{{twit.commentCount}} </td>
                     <td id="community-twit-id">{{twit.Recommend}} </td>
                     <td id="community-twit-nick">{{twit.User.nick}}</td>
