@@ -221,7 +221,7 @@ router.post('/password/edit', async (req, res, next) => {
       },
       {where:{email: req.body.mail}});
   
-      res.redirect('/Login');
+      res.redirect('/login');
     }
     
   } catch (error) {
