@@ -527,7 +527,7 @@ router.post('/mail/delete/:idx',isLoggedIn, async (req, res) => {
     where: {id:id}
   });
 
-  res.redirect("/code/receiver");
+  res.redirect("/code/receiveCode");
 });
 
 //저장
