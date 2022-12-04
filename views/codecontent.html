@@ -10,7 +10,7 @@
         <span id="content-nick">{{read.sendUsernick}}</span>
         <span id="content-createdAt">작성일 : {{read.created}}</span>
             <form id="content-delete" action="/code/mail/delete/{{read.id}}" method="post" enctype="multipart/form-data">
-                <button id="content-delete-btn" type="submit">삭제</button>
+                <button id="content-delete-btn" type="submit" onclick="if(!confirm('메일을 삭제하시겠습니까?')){return false;}">삭제</button>
             </form>
             {% if favorite.favoriteId == read.sendUserId %}
             {% else %}

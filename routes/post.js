@@ -70,7 +70,7 @@ router.post('/edit/:idx', isLoggedIn, upload2.none(), async (req, res, next) => 
       content: req.body.content,
     },{where:{id:id}});
 
-    res.redirect('/community/'+id);
+    res.redirect('/community/post?postId='+id);
   } catch (error) {
     console.error(error);
     next(error);
@@ -92,7 +92,7 @@ router.post('/comment/:idx', isLoggedIn, upload2.none(), async (req, res, next) 
     const CountComment = await Comment.count({where: {PostId : id}});
     const PostComment = await Post.update({commentCount: CountComment},{where:{id:id}});
 
-    res.redirect('/community/'+id);
+    res.redirect('/community/post?postId='+id);
   } catch (error) {
     console.error(error);
     next(error);
@@ -110,7 +110,7 @@ router.post('/recommend/:idx', isLoggedIn, async (req, res, next) => {
     const CountRecommend = await Recommend.count({where: {PostId : id}});
     const goodPost = await Post.update({ Recommend :CountRecommend},{where: {id:id}});
 
-    res.redirect('/community/'+id);
+    res.redirect('/community/post?postId='+id);
   } catch (error) {
     console.error(error);
     next(error);
@@ -128,7 +128,7 @@ router.post('/derecommend/:idx', isLoggedIn, async (req, res, next) => {
     const CountRecommend = await Recommend.count({where: {PostId : id}});
     const goodPost = await Post.update({ Recommend :CountRecommend},{where: {id:id}});
 
-    res.redirect('/community/'+id);
+    res.redirect('/community/post?postId='+id);
   } catch (error) {
     console.error(error);
     next(error);

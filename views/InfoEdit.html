@@ -14,7 +14,7 @@
             <div id="info-edit-label"><label for="edit-passwordcheck">비밀번호확인&emsp;</label></div>
             <input id="info-input" type="password" name="passwordcheck">
         </div>
-        <button id="info-edit-btn" type="submit"> 변경 </button>
+        <button id="info-edit-btn" type="submit" onclick="if(!confirm('변경된 정보로 저장하시겠습니까?')){return false;}"> 변경 </button>
         <div id = "Infoediterror">{{error}}</div>
     </div>
 </form>

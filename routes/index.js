@@ -64,7 +64,7 @@ try {
         from: 'wasdwxasd@naver.com',             //보내는 주소 입력
         to: user_email,                        //위에서 선언해준 받는사람 이메일
         subject: '안녕하세요 CODEUP입니다. 이메일 인증을 해주세요.',                  //메일 제목
-        text: code,                      //내용
+        text: "인증번호" + code,                      //내용
       });
       console.log("보내는거" + code);
       res.render('Certfication', {
@@ -138,8 +138,8 @@ if (exUser) {
   let info = await transporter.sendMail({   
       from: 'wasdwxasd@naver.com',             //보내는 주소 입력
       to: user_email,                        //위에서 선언해준 받는사람 이메일
-      subject: '안녕하세요',                  //메일 제목
-      text: code,                      //내용
+      subject: '안녕하세요 CODEUP입니다 비밀번호 변경을 위해 이메일 인증을 해주세요.',                  //메일 제목
+      text: "인증번호" + code,                      //내용
     });
     console.log("보내는거" + code);
     res.render('passwordCertify', {
@@ -187,6 +187,14 @@ router.post('/password/edit', async (req, res, next) => {
 
     const Null = "입력하지 않은 칸이 있는지 확인해주세요.";
     const Check = "비밀번호가 틀립니다.";
+    const reCheck = "이전과 같은 비밀번호로는 변경할 수 없습니다."
+
+    const presentPassword = await User.findOne({
+      attributes: ['password'],
+      where: {email : req.body.mail},
+    });
+
+    var compare = await bcrypt.compare(pass, presentPassword.password);
 
     if(pass[0] == null) {
       res.render("passwordEdit", {
@@ -201,6 +209,11 @@ router.post('/password/edit', async (req, res, next) => {
       res.render("passwordEdit", {
         userMail:email,
         check: Check,
+      });
+    } else if(compare) {
+      res.render("passwordEdit", {
+        userMail:email,
+        check: reCheck,
       });
     } else {
       const password = await User.update({

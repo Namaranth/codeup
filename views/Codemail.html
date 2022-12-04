@@ -75,7 +75,7 @@
                             <input name="codeid" value="{{code.id}}" hidden>
          
                             <input id= "favoritedNick" name="favoritedNick" value="{{ favorite.nick }}" readonly style="resize: none;"></input>
-                            <input type="submit" id="favoritedDelete" value="삭제"></input>
+                            <input type="submit" id="favoritedDelete" value="삭제" onclick="if(!confirm('{{favorite.nick}} 님을 즐겨찾기에서 삭제하십니까?')){return false;}"></input>
                         </div>
                     </form>
                     {% endfor %}
@@ -101,7 +101,7 @@
             <textarea id="writecontent" name="content" maxlength="500" placeholder="내용을 입력하세요."></textarea>
         </div>
         <div>
-            <button id="write-btn" type="submit" class="btn">전송</button>
+            <button id="write-btn" type="submit" class="btn" onclick="if(!confirm('메일을 보내겠습니다.')){return false;}">전송</button>
             
         </div>
     </form>

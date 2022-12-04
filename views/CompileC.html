@@ -12,7 +12,7 @@
                     <a href="/code/C/{{twit.id}}">{{twit.codetitle}}
                     </a>
                     <form id="code-delete" action="/code/C/delete/{{twit.id}}">
-                        <button type="submit">X</button>
+                        <button type="submit" onclick="if(!confirm('정말 {{twit.codetitle}}을 삭제하실겁니까?')){return false;}">X</button>
                     </form>
                     
                     <span class="material-symbols-outlined">

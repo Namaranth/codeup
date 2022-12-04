@@ -14,7 +14,7 @@
         {% if user.id == read.UserId %}
         <div class="edit-delete">
             <form id="content-delete" action="/community/delete/{{read.id}}" method="post" enctype="multipart/form-data">
-                <button id="content-delete-btn" type="submit">삭제</button>
+                <button id="content-delete-btn" type="submit" onclick="if(!confirm('정말 글을 삭제하실겁니까?')){return false;}">삭제</button>
             </form>
             <form id="content-edit" action="/community/edit/{{read.id}}" method="post" enctype="multipart/form-data">
                 <button id="content-edit-btn" type="submit">수정</button>
@@ -54,7 +54,7 @@
         <div id="community-review-nick"><strong>{{twit.User.nick}}</strong>&nbsp;&nbsp;&nbsp;{{twit.created}}</div>
         <p id="community-review-review">{{twit.review}}</p>
         {% if user.id == twit.UserId %}
-        <a class="reload" href="/post/community/comment/delete/{{twit.id}}">삭제</a>
+        <a class="reload" href="/post/community/comment/delete/{{twit.id}}" onclick="if(!confirm('정말 댓글을 삭제하실겁니까?')){return false;}">삭제</a>
         {% endif %}
         
     </div>
@@ -62,6 +62,7 @@
     {% endfor %}
        
 </div>
+
 {% endblock %}
 
 

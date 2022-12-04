@@ -416,4 +416,5 @@ body{
     background-color: transparent;
     color:white;
     border: 0;
+    cursor: pointer;
 }

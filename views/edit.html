@@ -10,7 +10,7 @@
             <textarea id="writecontent" name="content" maxlength="500">{{read.content}}</textarea>
         </div>
         <div>
-            <button id="write-btn" type="submit" class="btn">수정</button>
+            <button id="write-btn" type="submit" class="btn" onclick = "if(!confirm('정말 수정하실겁니까?')){return false;}">수정</button>
         </div>
     </form>
   </div>
