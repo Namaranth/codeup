@@ -573,6 +573,26 @@ router.get('/bestcommunity', async (req, res, next) => {
     }
   });
 
+  router.post('/community/edit/:idx', isLoggedIn, async (req, res, next) => {
+    var id = req.params.idx;
+  try {
+      const content = await Post.findOne({
+          include: {
+              model: User,
+              attributes: ['id', 'nick'],
+          },
+          where : {id},
+       });
+
+       res.render('edit', {
+          title: '커뮤니티',
+          read: content,
+       });
+  }catch(error) {
+      console.error(error);
+      return next(error);
+  }
+  });
 
 router.get('/community/post', isLoggedIn, async (req, res, next) => {
   // community/다음의 값을 idx로 가져옴
