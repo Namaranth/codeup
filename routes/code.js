@@ -530,11 +530,18 @@ router.get('/C/:idx', async (req, res, next) => {
           where : {codeType: 'C'},
           order: [['createdAt', 'DESC']],
         });
+      const countMails = await Codesend.count({
+        where:{
+          UserId:req.user.id,
+          state:"unread",
+        }
+      });
 
        res.render('CompileC', {
           title: '코드',
           read: codes,
-          twits: codeC
+          twits: codeC,
+          countmail: countMails
        });
 
 
@@ -564,11 +571,18 @@ router.get('/Cpp/:idx', async (req, res, next) => {
           where : {codeType: 'Cpp'},
           order: [['createdAt', 'DESC']],
         });
+      const countMails = await Codesend.count({
+        where:{
+          UserId:req.user.id,
+          state:"unread",
+        }
+      });
 
        res.render('CompileCpp', {
           title: '코드',
           read: codes,
           twits: codeCpp,
+          countmail: countMails
        });
   }catch(error) {
       console.error(error);
