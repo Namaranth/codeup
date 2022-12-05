@@ -9,10 +9,20 @@ const dayjs = require("dayjs");
 const multer = require('multer');
 const { Code, User, Codesend, sequelize, Favorite } = require('../models');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
-const { get } = require('http');
 
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
+
+function systemPermission(source) {
+  var systemError = ["<windows.h>", "<filesystem>","C/", "<fstream>", "vim", "system", "fopen", "fclose", "fgetc", "fputc", "fgets", "fputs", "fscanf", "fprintf", "fread", "fwrite", "fseek", 'ftell', "rewind", "feof", "ferror", "fflush", "sleep", "malloc", "remove", "rename"]
+  for(var i = 0; i < systemError.length; i++) {
+    if(source.includes(systemError[i])) {
+      return true;
+    };
+  }
+}
+
+
 
 router.get('/', (req, res) => {
     res.redirect('/code/CompileC');
@@ -92,11 +102,12 @@ router.post('/code_receive', function(req,res) {
     var file='main.c';
     var arr= [];
     var i = 0;
-
+   
     fs.writeFile(file,source,'utf8',function(error) {
         console.log('write end');
     });
 
+    
     var compile = spawn('gcc',[file]);
     compile.stdout.on('data',function(data) {
         console.log('stdout: '+data);
@@ -108,8 +119,11 @@ router.post('/code_receive', function(req,res) {
     });
 
     compile.on('close',function(data){
-        if(arr[0] == null) {
-            var run = spawn('./a.out',[]);
+        if(systemPermission(source)) {
+          var errorData = {'result':'ok','output': 'Permission denied (Prevent system commands from being used)'};
+          res.json(errorData);
+        }else if(arr[0] == null) {
+          var run = spawn('./hello.exe',[]);
             run.stdout.on('data',function(output){
                 console.log('컴파일 완료');
                 var str = output.toString('utf8');
@@ -123,8 +137,8 @@ router.post('/code_receive', function(req,res) {
                 console.log('stdout: ' + output);
             });
         }else {
-            var errorData = {'result':'ok','output': arr[1]};
-            res.json(errorData);
+          var errorData = {'result':'ok','output': arr[1]};
+          res.json(errorData);
         }
 
     });
@@ -142,6 +156,7 @@ router.post('/code_receiveCpp', function(req,res) {
     });
 
     var compile = spawn('g++',[file]);
+
     compile.stdout.on('data',function(data) {
         console.log('stdout: '+data);
     });
@@ -152,19 +167,22 @@ router.post('/code_receiveCpp', function(req,res) {
     });
 
     compile.on('close',function(data){
-        if(arr2[1] == null) {
-            var run = spawn('./a.out',[]);
-            run.stdout.on('data',function(output){
-                console.log('컴파일 완료');
-                var responseData = {'result':'ok','output': output.toString('utf8')};
-                res.json(responseData);
-            });
-            run.stderr.on('data', function (output) {
+        if(systemPermission(source)) {
+          var errorData = {'result':'ok','output': 'Permission denied (Prevent system commands from being used)'};
+          res.json(errorData);
+        }else if(arr2[1] == null){
+          var run = spawn('./a.out',[]);
+          run.stdout.on('data',function(output){
+              console.log('컴파일 완료');
+              var responseData = {'result':'ok','output': output.toString('utf8')};
+              res.json(responseData);
+          });
+          run.stderr.on('data', function (output) {
 
-            });
-            run.on('close', function (output) {
-                console.log('stdout: ' + output);
-            });
+          });
+          run.on('close', function (output) {
+              console.log('stdout: ' + output);
+          });
         }else {
             var errorData = {'result':'ok','output': arr2[0]};
             res.json(errorData);
