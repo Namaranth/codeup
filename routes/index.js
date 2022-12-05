@@ -439,7 +439,7 @@ router.get('/bestcommunity', async (req, res, next) => {
           model: User,
           attributes: ['id', 'nick'],
         },
-        where : {Recommend: {[Op.gte]:20}},
+        where : {Recommend: {[Op.gte]:10}},
         order: [['createdAt', 'DESC']],
       });
      
