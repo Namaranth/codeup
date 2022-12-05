@@ -123,7 +123,7 @@ router.post('/code_receive', function(req,res) {
           var errorData = {'result':'ok','output': 'Permission denied (Prevent system commands from being used)'};
           res.json(errorData);
         }else if(arr[0] == null) {
-          var run = spawn('./hello.exe',[]);
+          var run = spawn('./a.out',[]);
             run.stdout.on('data',function(output){
                 console.log('컴파일 완료');
                 var str = output.toString('utf8');
