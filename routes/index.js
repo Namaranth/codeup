@@ -356,6 +356,7 @@ router.get('/mypage/community/:idx', isLoggedIn, async (req, res) => {
       });
 
      const countPosts = await Post.count({
+       where: {UserId: req.user.id},
      });
      var skip = (page-1)*limit;
      var maxPage = Math.ceil(countPosts/limit);
