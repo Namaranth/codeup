@@ -49,10 +49,10 @@ try {
     // 메일발송 함수
 
     const transporter = nodemailer.createTransport({
-      service: "Naver",
+      service: "네이버, 다음 등 서비스 ",
       auth: {
-          user: "wasdwxasd@naver.com",
-          pass: "825462@lsh"
+          user: "아이디 입력",
+          pass: "비밀번호 입력"
       },
       tls: {
           rejectUnauthorized: false
@@ -61,7 +61,7 @@ try {
 
 
     let info = await transporter.sendMail({   
-        from: 'wasdwxasd@naver.com',             //보내는 주소 입력
+        from: '람보내는 사람',             //보내는 주소 입력
         to: user_email,                        //위에서 선언해준 받는사람 이메일
         subject: '안녕하세요 CODEUP입니다. 이메일 인증을 해주세요.',                  //메일 제목
         text: "인증번호" + code,                      //내용
@@ -124,10 +124,10 @@ if (exUser) {
   // 메일발송 함수
   
   const transporter = nodemailer.createTransport({
-    service: "Naver",
+    service: "서비스",
     auth: {
-        user: "wasdwxasd@naver.com",
-        pass: "825462@lsh"
+        user: "아이디",
+        pass: "비밀번호"
     },
     tls: {
         rejectUnauthorized: false
@@ -136,7 +136,7 @@ if (exUser) {
   
   
   let info = await transporter.sendMail({   
-      from: 'wasdwxasd@naver.com',             //보내는 주소 입력
+      from: '',             //보내는 주소 입력
       to: user_email,                        //위에서 선언해준 받는사람 이메일
       subject: '안녕하세요 CODEUP입니다 비밀번호 변경을 위해 이메일 인증을 해주세요.',                  //메일 제목
       text: "인증번호" + code,                      //내용
