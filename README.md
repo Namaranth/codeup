@@ -6,3 +6,5 @@
 반 친구들과 함께 또는 같이 배우고자 마음 먹는 친구들과 함께 서로의 코딩을 공유하고 실행해보는 환경을 만들고자 했습니다.
 
 
+
+![10조 코드업 포스터](https://github.com/user-attachments/assets/1bd9ce0a-a67d-45fa-a687-e2c38e46c90b)
